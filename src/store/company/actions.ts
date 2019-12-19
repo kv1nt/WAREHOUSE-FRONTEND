@@ -43,3 +43,13 @@ export function createCompany(newCompany : Company) {
     }
 }
 
+// export function removeCompany(id : number) {
+//     return (dispatch : any, getState : any) =>{
+//         return axios.delete(`/api/company`, id)
+//           .then(res =>{
+//               dispatch(setCompanies(res.data));
+//               return res.data;
+//           })
+//      }
+//   }
+

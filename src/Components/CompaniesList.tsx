@@ -25,6 +25,10 @@ interface AppOwnProps{
        this.setState({companies : await this.props.getCompanies()})
     }
 
+     removeCompany(){
+        alert()
+    }
+
 
     render() {
         const {companies} = this.state;
@@ -38,6 +42,7 @@ interface AppOwnProps{
                   <ul>
                       <li key={i+1}>
                         <div className="CompanyItem">
+                          <div className="DeleteCompany" onClick={this.removeCompany}>X</div>
                           <p>Company Name: {company.name}</p>
                           <p>Description:  {company.description}</p>
                           </div>

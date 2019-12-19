@@ -1,5 +1,12 @@
-.CompanyItem{
+.CompanyItem
+{
     background-color: rgb(170, 252, 225);
     width: 50%;
     height: auto;
+}
+
+.DeleteCompany
+{
+    float: right;
+    cursor: pointer;
 }
