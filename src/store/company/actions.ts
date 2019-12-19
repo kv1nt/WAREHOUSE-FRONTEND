@@ -38,6 +38,7 @@ export function createCompany(newCompany : Company) {
         .then(res => {
             dispatch(setCompanies(res.data));
             return res;
+            //Mops
         });
     }
 }
