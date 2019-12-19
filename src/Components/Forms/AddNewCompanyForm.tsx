@@ -34,13 +34,12 @@ export  class AddCompanyFrom extends React.Component<any,AddCompanyState >{
 
      saveCompany = async () =>{
         const {name, desc} = this.state;
-        const company : Company = {name : name, description: desc, id: ''};
+        const company : Company = {name : name, description: desc, id: null};
         await this.props.createCompany(company);
     }
 
 
     render(){
-        console.log(this.props.companies)
         return(
             <div className="inputsForm">
                 <span>Name: </span><input type="text" onChange={e => this.onChangeName(e)} />
@@ -50,10 +49,6 @@ export  class AddCompanyFrom extends React.Component<any,AddCompanyState >{
         );
     }
 }
-
-
-
-
 
 const mapStateToProps = (state: AppState) => ({});
 

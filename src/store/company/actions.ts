@@ -5,6 +5,7 @@ import {
  } from "./types";
 
 import axios from 'axios';
+import { string } from "prop-types";
 
 export function setCompanies(Companies : Company[]){
     return{
@@ -32,6 +33,7 @@ export function getCompanies() {
 
 export function createCompany(newCompany : Company) {
     return (dispatch : any, getState : any) =>{
+        newCompany.id = null;
         return axios.post(`/api/company`, newCompany)
         .then(res => {
             dispatch(setCompanies(res.data));

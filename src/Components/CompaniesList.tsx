@@ -4,6 +4,7 @@ import { AppState } from '../store';
 import { CompaniesState, Company } from "../store/company/types";
 import { getCompanies } from '../store/company/actions';
 import AddCompanyFrom  from "../Components/Forms/AddNewCompanyForm";
+import '../Components/styles/CompanyList.css';
 
 
 interface AppOwnProps{
@@ -36,8 +37,10 @@ interface AppOwnProps{
                 <>
                   <ul>
                       <li key={i+1}>
+                        <div className="CompanyItem">
                           <p>Company Name: {company.name}</p>
                           <p>Description:  {company.description}</p>
+                          </div>
                       </li>
                   </ul> 
                 </>
@@ -47,7 +50,7 @@ interface AppOwnProps{
           <p>Add New Company:</p>
           <AddCompanyFrom  />
         </div>
-    
+
   
       );
     }
