@@ -5,7 +5,6 @@ import {
  } from "./types";
 
 import axios from 'axios';
-import { string } from "prop-types";
 
 export function setCompanies(Companies : Company[]){
     return{
@@ -14,15 +13,8 @@ export function setCompanies(Companies : Company[]){
     }
 }
 
-// export function setCompany(Company : Company){
-//     return{
-//         type: SET_COMPANY,
-//         value: Company
-//     }
-// }
-
 export function getCompanies() {
-  return (dispatch : any, getState : any) =>{
+    return (dispatch : any, getState : any) =>{
       return axios.get(`/api/company`)
         .then(res =>{
             dispatch(setCompanies(res.data));
@@ -33,23 +25,31 @@ export function getCompanies() {
 
 export function createCompany(newCompany : Company) {
     return (dispatch : any, getState : any) =>{
-        newCompany.id = null;
         return axios.post(`/api/company`, newCompany)
         .then(res => {
             dispatch(setCompanies(res.data));
             return res;
-            //Mops
         });
     }
 }
 
-// export function removeCompany(id : number) {
-//     return (dispatch : any, getState : any) =>{
-//         return axios.delete(`/api/company`, id)
-//           .then(res =>{
-//               dispatch(setCompanies(res.data));
-//               return res.data;
-//           })
-//      }
-//   }
+export function deleteCompany(id : any) {
+    return (dispatch : any, getState : any) =>{
+        return axios.delete(`/api/company/${id}`)
+          .then(res =>{
+              dispatch(setCompanies(res.data));
+              return res;
+          })
+     }
+  }
+
+  export function updateCompany(id : any) {
+    return (dispatch : any, getState : any) =>{
+        return axios.put(`/api/company/${id}`)
+          .then(res =>{
+              dispatch(setCompanies(res.data));
+              return res;
+          })
+     }
+  }
 

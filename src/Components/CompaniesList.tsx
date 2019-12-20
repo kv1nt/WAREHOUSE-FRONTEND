@@ -2,17 +2,23 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { AppState } from '../store';
 import { CompaniesState, Company } from "../store/company/types";
-import { getCompanies } from '../store/company/actions';
-import AddCompanyFrom  from "../Components/Forms/AddNewCompanyForm";
+import { getCompanies, deleteCompany } from '../store/company/actions';
+import  AddCompanyFrom  from "../Components/Forms/AddNewCompanyForm";
 import '../Components/styles/CompanyList.css';
+import { types } from "@babel/core";
 
 
 interface AppOwnProps{
     getCompanies: typeof getCompanies;
+    deleteCompany: typeof deleteCompany;
+    onClick: (e: React.MouseEvent) => void
     companies: CompaniesState;
-    description:string;
-    name:string;
+    description: string;
+    name: string;
+    id:any;
   }
+
+
 
   class CompaniesList extends React.Component<AppOwnProps, any> {
     state = {
@@ -25,8 +31,9 @@ interface AppOwnProps{
        this.setState({companies : await this.props.getCompanies()})
     }
 
-     removeCompany(){
-        alert()
+    async removeCompany(id: any) {
+      this.props.deleteCompany(id)
+      this.setState({companies : await this.props.getCompanies()})
     }
 
 
@@ -42,7 +49,7 @@ interface AppOwnProps{
                   <ul>
                       <li key={i+1}>
                         <div className="CompanyItem">
-                          <div className="DeleteCompany" onClick={this.removeCompany}>X</div>
+                          <div className="DeleteCompany" onClick={()=> this.removeCompany(company.id)}>✛</div>
                           <p>Company Name: {company.name}</p>
                           <p>Description:  {company.description}</p>
                           </div>
@@ -53,10 +60,8 @@ interface AppOwnProps{
           })}
           <br/>
           <p>Add New Company:</p>
-          <AddCompanyFrom  />
+          <AddCompanyFrom {...this.props} />
         </div>
-
-  
       );
     }
   }
@@ -67,5 +72,5 @@ interface AppOwnProps{
   
   export default connect(
     mapStateToProps,
-    { getCompanies  }
+    { getCompanies , deleteCompany }
   )(CompaniesList as any);

@@ -7,6 +7,10 @@
 
 .DeleteCompany
 {
+    margin-top: 15px;;
+    border: black 1px solid;
+    padding: 1px;
+    border-radius: 50%;
     float: right;
     cursor: pointer;
 }

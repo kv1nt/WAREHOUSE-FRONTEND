@@ -40,6 +40,8 @@ export  class AddCompanyFrom extends React.Component<any,AddCompanyState >{
 
 
     render(){
+
+    console.log(this.props)
         return(
             <div className="inputsForm">
                 <span>Name: </span><input type="text" onChange={e => this.onChangeName(e)} />
