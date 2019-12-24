@@ -2,7 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { AppState } from '../store';
 import { CompaniesState, Company } from "../store/company/types";
-import { getCompanies, deleteCompany } from '../store/company/actions';
+import { getCompanies, deleteCompany, deleteCompanyStore, setCompanies } from '../store/company/actions';
 import  AddCompanyFrom  from "../Components/Forms/AddNewCompanyForm";
 import '../Components/styles/CompanyList.css';
 import { types } from "@babel/core";
@@ -10,7 +10,9 @@ import { types } from "@babel/core";
 
 interface AppOwnProps{
     getCompanies: typeof getCompanies;
+    setCompanies: typeof setCompanies;
     deleteCompany: typeof deleteCompany;
+    deleteCompanyStore: typeof deleteCompanyStore;
     onClick: (e: React.MouseEvent) => void
     companies: CompaniesState;
     description: string;
@@ -32,7 +34,8 @@ interface AppOwnProps{
     }
 
     async removeCompany(id: any) {
-      this.props.deleteCompany(id)
+      this.props.deleteCompany(id);
+      this.props.deleteCompanyStore(id);
       this.setState({companies : await this.props.getCompanies()})
     }
 
@@ -72,5 +75,5 @@ interface AppOwnProps{
   
   export default connect(
     mapStateToProps,
-    { getCompanies , deleteCompany }
+    { getCompanies , deleteCompany, deleteCompanyStore, setCompanies }
   )(CompaniesList as any);

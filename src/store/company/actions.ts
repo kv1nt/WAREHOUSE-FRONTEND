@@ -1,18 +1,41 @@
 import { 
     Company,
+    CompaniesState,
     GET_COMPANIES,
-    SET_COMPANY
+    SET_COMPANY,
+    UPADATE_COMPANY,
+    DELETE_COMPANY
+
  } from "./types";
 
 import axios from 'axios';
 
-export function setCompanies(Companies : Company[]){
+//---------------------STORE-------------------------
+export function setCompanies(companies : Company[]){
     return{
         type: GET_COMPANIES,
-        value: Companies
+        value: companies
     }
 }
 
+
+export function deleteCompanyStore(id : number){
+    return{
+        type: DELETE_COMPANY,
+        meta: {id}
+    }
+}
+
+export function updateCompaniesStore(company : CompaniesState){
+    return{
+        type: UPADATE_COMPANY,
+        payload: company
+    }
+}
+//----------------------------------------------------
+
+
+//--------------------API-----------------------------
 export function getCompanies() {
     return (dispatch : any, getState : any) =>{
       return axios.get(`/api/company`)
@@ -40,8 +63,8 @@ export function deleteCompany(id : any) {
               dispatch(setCompanies(res.data));
               return res;
           })
-     }
-  }
+    }
+}
 
   export function updateCompany(id : any) {
     return (dispatch : any, getState : any) =>{
@@ -49,7 +72,7 @@ export function deleteCompany(id : any) {
           .then(res =>{
               dispatch(setCompanies(res.data));
               return res;
-          })
-     }
-  }
+        })
+    }
+}
 

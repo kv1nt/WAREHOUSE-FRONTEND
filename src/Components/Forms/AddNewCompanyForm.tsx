@@ -1,12 +1,15 @@
 import * as React from "react";
-import { createCompany } from "../../store/company/actions";
+import { createCompany, deleteCompany, updateCompany, getCompanies} from "../../store/company/actions";
 import {Company } from "../../store/company/types";
 import { AppState } from '../../store';
 import { connect } from "react-redux";
 
 interface FormownProps{
     companies?: Company[]
-    createCompany ?: typeof createCompany;
+    createCompany : typeof createCompany;
+    deleteCompany: typeof deleteCompany; 
+    updateCompany: typeof updateCompany;
+    getCompanies: typeof getCompanies;
 }
 
 interface AddCompanyState {
@@ -32,16 +35,15 @@ export  class AddCompanyFrom extends React.Component<any,AddCompanyState >{
         this.setState({desc: e.currentTarget.value})
     }
 
-     saveCompany = async () =>{
+    saveCompany = async () =>{
         const {name, desc} = this.state;
         const company : Company = {name : name, description: desc, id: null};
         await this.props.createCompany(company);
+        
     }
 
 
     render(){
-
-    console.log(this.props)
         return(
             <div className="inputsForm">
                 <span>Name: </span><input type="text" onChange={e => this.onChangeName(e)} />
@@ -52,9 +54,11 @@ export  class AddCompanyFrom extends React.Component<any,AddCompanyState >{
     }
 }
 
-const mapStateToProps = (state: AppState) => ({});
+const mapStateToProps = (state: AppState) => ({
+    companies : state.companies
+  });
 
   export default  connect(
     mapStateToProps,
-    { createCompany  }
+    { createCompany, deleteCompany, updateCompany, getCompanies }
   )(AddCompanyFrom as any);
