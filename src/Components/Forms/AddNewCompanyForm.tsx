@@ -3,7 +3,7 @@ import { createCompany, deleteCompany, updateCompany, getCompanies} from "../../
 import {Company } from "../../store/company/types";
 import { AppState } from '../../store';
 import { connect } from "react-redux";
-
+import '../Forms/formStyle.css';
 interface FormownProps{
     companies?: Company[]
     createCompany : typeof createCompany;
@@ -38,17 +38,21 @@ export  class AddCompanyFrom extends React.Component<any,AddCompanyState >{
     saveCompany = async () =>{
         const {name, desc} = this.state;
         const company : Company = {name : name, description: desc, id: null};
-        await this.props.createCompany(company);
-        
+         this.props.createCompany(company);
+         await this.props.getCompanies()
     }
 
 
     render(){
         return(
-            <div className="inputsForm">
+            <div className="add-company-form">
+                <div className="input-block">
                 <span>Name: </span><input type="text" onChange={e => this.onChangeName(e)} />
+            </div>
+            <div className="input-block">
                 <span>Description: </span><input type="text" onChange={e => this.onChangeDescription(e)} />
-                <button onClick={this.saveCompany}>Save</button>
+            </div>
+                <button className="add-company-btn" onClick={this.saveCompany}>Save</button>
             </div>
         );
     }
@@ -60,5 +64,5 @@ const mapStateToProps = (state: AppState) => ({
 
   export default  connect(
     mapStateToProps,
-    { createCompany, deleteCompany, updateCompany, getCompanies }
+    { createCompany }
   )(AddCompanyFrom as any);

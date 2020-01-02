@@ -1,16 +1,58 @@
 .CompanyItem
 {
-    background-color: rgb(170, 252, 225);
+    background-color: #F0FFFF;
     width: 50%;
     height: auto;
+    margin: 25px;
+    border: 1px solid rgba(213, 213, 213, 0.795);
+}
+
+ul
+{
+    cursor: pointer;
+}
+
+ul li
+{
+    list-style: none;
 }
 
 .DeleteCompany
 {
     margin-top: 15px;;
-    border: black 1px solid;
-    padding: 1px;
-    border-radius: 50%;
     float: right;
     cursor: pointer;
+}
+
+.delete-company-btn
+{
+    background-color: red; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+}
+
+.company-title
+{
+    font-size: 17px;
+    font-family: cursive;
+    padding: 10px;
+}
+
+.company-description
+{
+    font-size: 14px;
+    padding: 10px;
+}
+
+.title-block
+{
+    font-size: 17px;
+    font-family: cursive;
+    padding: 10px;
+    margin-left: 55px;
 }

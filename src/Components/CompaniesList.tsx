@@ -2,59 +2,70 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { AppState } from '../store';
 import { CompaniesState, Company } from "../store/company/types";
-import { getCompanies, deleteCompany, deleteCompanyStore, setCompanies } from '../store/company/actions';
+import { getCompanies, deleteCompany, deleteCompanyStore, createCompany } from '../store/company/actions';
 import  AddCompanyFrom  from "../Components/Forms/AddNewCompanyForm";
 import '../Components/styles/CompanyList.css';
-import { types } from "@babel/core";
+import UpdateCompanyForm from "./Forms/UpdateCompanyForm";
 
 
 interface AppOwnProps{
     getCompanies: typeof getCompanies;
-    setCompanies: typeof setCompanies;
+    createCompany: typeof createCompany;
     deleteCompany: typeof deleteCompany;
     deleteCompanyStore: typeof deleteCompanyStore;
     onClick: (e: React.MouseEvent) => void
     companies: CompaniesState;
+    company: Company 
     description: string;
     name: string;
     id:any;
   }
 
 
-
   class CompaniesList extends React.Component<AppOwnProps, any> {
     state = {
       companies: [], 
       description:'', 
-      name:''
+      name:'',
+      id: ''
     };
-  
-    async componentDidMount() {
-       this.setState({companies : await this.props.getCompanies()})
+
+    async componentDidMount(){
+       await this.props.getCompanies()
     }
 
     async removeCompany(id: any) {
       this.props.deleteCompany(id);
       this.props.deleteCompanyStore(id);
-      this.setState({companies : await this.props.getCompanies()})
+      await this.props.getCompanies()
+    }
+
+    async getCurrentCompany (company: Company) {
+       this.setState({
+         id: company.id,
+         name: company.name,
+         description: company.description,
+        })
     }
 
 
     render() {
-        const {companies} = this.state;
+        const {companies} = this.props.companies;
       return (
           <div className="some">
-          <p>Companies: </p>
+          <div className="title-block">Companies:</div>
           {
             companies.map((company: Company, i: number) =>{
               return(
                 <>
                   <ul>
                       <li key={i+1}>
-                        <div className="CompanyItem">
-                          <div className="DeleteCompany" onClick={()=> this.removeCompany(company.id)}>✛</div>
-                          <p>Company Name: {company.name}</p>
-                          <p>Description:  {company.description}</p>
+                        <div className="CompanyItem" onClick={()=> this.getCurrentCompany(company)}>
+                          <div className="DeleteCompany" onClick={()=> this.removeCompany(company.id)}>
+                            <button className="delete-company-btn">Delete</button>
+                          </div>
+                          <div className="company-title">{company.name}</div>
+                          <div className="company-description">{company.description}</div>
                           </div>
                       </li>
                   </ul> 
@@ -62,9 +73,11 @@ interface AppOwnProps{
               )
           })}
           <br/>
-          <p>Add New Company:</p>
+          <div className="title-block">Add New Company:</div>
           <AddCompanyFrom {...this.props} />
-        </div>
+          <div className="title-block">Update Company:</div>
+          <UpdateCompanyForm {...this.state} />
+        </div>        
       );
     }
   }
@@ -75,5 +88,8 @@ interface AppOwnProps{
   
   export default connect(
     mapStateToProps,
-    { getCompanies , deleteCompany, deleteCompanyStore, setCompanies }
+    {
+       getCompanies , deleteCompany,
+       deleteCompanyStore, createCompany
+    }
   )(CompaniesList as any);
