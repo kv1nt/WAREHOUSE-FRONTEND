@@ -27,7 +27,8 @@ interface AppOwnProps{
       companies: [], 
       description:'', 
       name:'',
-      id: ''
+      id: '',
+      style: ''
     };
 
     async componentDidMount(){
@@ -45,6 +46,7 @@ interface AppOwnProps{
          id: company.id,
          name: company.name,
          description: company.description,
+         style: "dark-side"
         })
     }
 
@@ -52,31 +54,31 @@ interface AppOwnProps{
     render() {
         const {companies} = this.props.companies;
       return (
-          <div className="some">
-          <div className="title-block">Companies:</div>
-          {
-            companies.map((company: Company, i: number) =>{
-              return(
-                <>
-                  <ul>
-                      <li key={i+1}>
-                        <div className="CompanyItem" onClick={()=> this.getCurrentCompany(company)}>
-                          <div className="DeleteCompany" onClick={()=> this.removeCompany(company.id)}>
-                            <button className="delete-company-btn">Delete</button>
-                          </div>
-                          <div className="company-title">{company.name}</div>
-                          <div className="company-description">{company.description}</div>
-                          </div>
-                      </li>
-                  </ul> 
-                </>
-              )
-          })}
-          <br/>
-          <div className="title-block">Add New Company:</div>
-          <AddCompanyFrom {...this.props} />
-          <div className="title-block">Update Company:</div>
-          <UpdateCompanyForm {...this.state} />
+          <div className={this.state.style}>
+            <div className="title-block">Companies:</div>
+            {
+              companies.map((company: Company, i: number) =>{
+                return(
+                  <>
+                    <ul>
+                        <li key={i+1}>
+                          <div className="CompanyItem" onClick={()=> this.getCurrentCompany(company)}>
+                            <div className="DeleteCompany" onClick={()=> this.removeCompany(company.id)}>
+                              <button className="delete-company-btn">Delete</button>
+                            </div>
+                            <div className="company-title">{company.name}</div>
+                            <div className="company-description">{company.description}</div>
+                            </div>
+                        </li>
+                    </ul> 
+                  </>
+                )
+            })}
+            <br/>
+            <div className="title-block">Add New Company:</div>
+            <AddCompanyFrom {...this.props} />
+            <div className="title-block">Update Company:</div>
+            <UpdateCompanyForm {...this.state} />
         </div>        
       );
     }

@@ -56,3 +56,11 @@ ul li
     padding: 10px;
     margin-left: 55px;
 }
+
+.dark-side
+{
+    position: absolute;
+    opacity: 0.7;
+    background:black; /* Цвет фона */
+    z-index: 1;
+}

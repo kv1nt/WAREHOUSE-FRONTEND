@@ -48,7 +48,7 @@ export  class AddCompanyFrom extends React.Component<any,AddCompanyState >{
             <div className="add-company-form">
                 <div className="input-block">
                 <span>Name: </span><input type="text" onChange={e => this.onChangeName(e)} />
-            </div>
+            </div> 
             <div className="input-block">
                 <span>Description: </span><input type="text" onChange={e => this.onChangeDescription(e)} />
             </div>
