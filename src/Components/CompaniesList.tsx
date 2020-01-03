@@ -54,7 +54,7 @@ interface AppOwnProps{
     render() {
         const {companies} = this.props.companies;
       return (
-          <div className={this.state.style}>
+          <div className="comapnies-list-container">
             <div className="title-block">Companies:</div>
             {
               companies.map((company: Company, i: number) =>{
