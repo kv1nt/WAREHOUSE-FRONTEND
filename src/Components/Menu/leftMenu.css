@@ -1,6 +1,26 @@
 .left-menu-container
 {
-    width: 20%;
-    border: 1px solid rgba(213, 213, 213, 0.795);
-    float: left;
+  height: 100%;
+  width: 12%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color:#0A0A64;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left-menu-container a
+{
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #f1f1f1;
+  display: block;
+}
+
+.left-menu-container a:hover
+ {
+    color: #818181;
 }

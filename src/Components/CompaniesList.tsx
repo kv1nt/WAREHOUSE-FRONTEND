@@ -19,6 +19,7 @@ interface AppOwnProps{
     description: string;
     name: string;
     id:any;
+    path?: string;
   }
 
 

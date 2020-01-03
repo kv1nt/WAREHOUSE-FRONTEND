@@ -1,10 +1,17 @@
 import React from 'react';
 import '../Menu/leftMenu.css';
+import { BrowserRouter as Router,
+  Route,
+  Link } from 'react-router-dom';
 
 
-interface LeftMenuProps{}
+interface LeftMenuProps{
+  path?: string
+}
 
-interface LeftMenuState{}
+interface LeftMenuState{
+  path?: string
+}
 
 
 export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
@@ -16,11 +23,13 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
     render() {
         return (
             <div className="left-menu-container">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Companies</a></li>
-                    <li><a href="#">Warehouses</a></li>
-                    <li><a href="#">Location</a></li>
+               <ul>
+                  <Router>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/companies">Companies</Link></li>
+                    <li><Link to="/warehouses">Warehouses</Link></li>
+                    <li><Link to="/locations">Locations</Link></li>
+                  </Router>
                 </ul>
             </div>
         )
