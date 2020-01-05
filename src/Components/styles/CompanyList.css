@@ -69,3 +69,14 @@ ul li
 {
     margin-left: 20%;
 }
+
+@media screen and (max-width: 770px) {
+    .title-block
+    {
+        font-size: 17px;
+        font-family: cursive;
+        padding: 10px;
+        margin-left: 55px;
+        margin-top: 10%;
+    }
+}

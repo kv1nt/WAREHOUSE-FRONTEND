@@ -6,14 +6,15 @@
   z-index: 1;
   top: 0;
   left: 0;
-  background-color:#0A0A64;
+  background-color:#5187c8;
   overflow-x: hidden;
-  padding-top: 20px;
+  padding: 1%;
+  border: 1px solid #5ca1c6
 }
 
 .left-menu-container a
 {
-  padding: 6px 8px 6px 16px;
+  padding: 6px 8px 6px 0px;
   text-decoration: none;
   font-size: 20px;
   color: #f1f1f1;
@@ -21,6 +22,48 @@
 }
 
 .left-menu-container a:hover
- {
+{
     color: #818181;
 }
+
+@media screen and (max-width: 1200px) {
+  .left-menu-container a
+  {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .left-menu-container ul
+  {
+    padding-left:20px;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .left-menu-container 
+  {
+    height: 3%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #0A0A64;
+    overflow-x: hidden;
+    padding: 1%;
+    display: block;
+  }
+
+  .left-menu-container ul
+  {
+    padding-left:20px;
+    font-size: 13px;
+    display: flex;
+    margin-top: 0px;
+    margin-left: 26%;
+  }
+}
+
+
+

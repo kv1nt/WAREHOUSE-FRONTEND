@@ -49,6 +49,7 @@ export function getCompanies() {
       return axios.get(`/api/company`)
         .then(res =>{
             dispatch(getCompaniesFromStore(res.data));
+            console.log()
             return res.data;
         })
    }
