@@ -12,7 +12,7 @@
     margin-left: 30px;
     width: 300px;
     height: 200px;
-    border: solid 1px #ccc;
+    border: solid 1px #92b0d8;
     float: left;  
     overflow: hidden;
     text-overflow: ellipsis;
@@ -26,4 +26,10 @@
     text-overflow: ellipsis;
     width: auto;
     height: 27px;
+    padding-left: 5px;
+}
+
+.company-breadcrumb .short-descripton
+{
+    padding: 5px;
 }

@@ -1,10 +1,10 @@
 import React from 'react'
-import '../Breadcrumbs/companyBreadcrumb.css'
-import { Company, CompaniesState } from '../../store/company/types'
-import { CompanyBreadcrumb } from './CompanyBreadcrumb'
-import { getCompanies } from '../../store/company/actions'
+import '../CompanyBreadcrumb/companyBreadcrumb.css'
+import { Company, CompaniesState } from '../../../store/company/types'
+import { CompanyBreadcrumb } from '../CompanyBreadcrumb/CompanyBreadcrumb'
+import { getCompanies } from '../../../store/company/actions'
 import { connect } from 'react-redux'
-import { AppState } from '../../store'
+import { AppState } from '../../../store'
 
 
 interface ICompanyBreadcrumbListProps

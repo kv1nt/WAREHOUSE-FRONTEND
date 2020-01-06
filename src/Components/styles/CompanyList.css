@@ -1,6 +1,6 @@
 .CompanyItem
 {
-    background-color: #F0FFFF;
+    background-color: #efefef;
     width: 50%;
     height: auto;
     margin: 25px;
@@ -26,7 +26,7 @@ ul li
 
 .delete-company-btn
 {
-    background-color: red; /* Green */
+    background-color: #c74040;
     border: none;
     color: white;
     padding: 5px 20px;

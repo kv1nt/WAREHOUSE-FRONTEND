@@ -1,7 +1,8 @@
 import React from 'react'
-import '../Breadcrumbs/companyBreadcrumb.css'
-import { Company } from '../../store/company/types'
-import { getCompanies } from '../../store/company/actions'
+import '../CompanyBreadcrumb/companyBreadcrumb.css'
+
+import { Company } from '../../../store/company/types'
+import { getCompanies } from '../../../store/company/actions'
 
 interface ICompanyBreadcrumbState
 {

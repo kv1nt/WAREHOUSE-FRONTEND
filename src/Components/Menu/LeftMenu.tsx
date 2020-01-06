@@ -7,7 +7,7 @@ import { BrowserRouter as Router,
 import { MainPage } from '../Main/MainPage';
 import GoogleMaps from '../GoogleMap/GoogleMaps';
 import CompaniesList from '../CompaniesList';
-import  CompanyBreadcrumbList  from '../Breadcrumbs/BreadcrumbList';
+import CompanyBreadcrumbList from '../Breadcrumbs/CompanyBreadcrumb/BreadcrumbList'
 
 
 interface LeftMenuProps{
@@ -30,8 +30,8 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
           <Router>
             <div className="left-menu-container">
                 <ul>
-                  <li><Link to={'/'} > Home </Link></li>
-                  <li><Link to={'/companies'} >Companies</Link></li>
+                  <li><Link to={'/'} >Companies</Link></li>
+                  <li><Link to={'/companies'} >Company Service</Link></li>
                   <li><Link to={'/warehouses'} >Warehouses</Link></li>
                   <li><Link to={'/locations'} >Locations</Link></li>
                 </ul>
