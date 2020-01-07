@@ -1,6 +1,5 @@
 import { 
     Company,
-    CompaniesState,
     GET_COMPANIES,
     SET_COMPANY,
     UPADATE_COMPANY,
@@ -49,7 +48,6 @@ export function getCompanies() {
       return axios.get(`/api/company`)
         .then(res =>{
             dispatch(getCompaniesFromStore(res.data));
-            console.log()
             return res.data;
         })
    }
@@ -59,7 +57,6 @@ export function createCompany(newCompany : Company) {
     return (dispatch : any, getState : any) =>{
         return axios.post(`/api/company`, newCompany)
         .then(res => {
-            console.log(res.data)
             dispatch(createCompanyInStore(res.data));
             return res;
         });

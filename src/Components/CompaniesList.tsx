@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { AppState } from '../store';
 import { CompaniesState, Company } from "../store/company/types";
 import { getCompanies, deleteCompany, deleteCompanyStore, createCompany } from '../store/company/actions';
-import  AddCompanyFrom  from "../Components/Forms/AddNewCompanyForm";
+import  AddCompanyFrom  from "./Forms/CompanyForms/AddNewCompanyForm";
 import '../Components/styles/CompanyList.css';
-import UpdateCompanyForm from "./Forms/UpdateCompanyForm";
+import UpdateCompanyForm from "./Forms/CompanyForms/UpdateCompanyForm";
 
 
 interface AppOwnProps{

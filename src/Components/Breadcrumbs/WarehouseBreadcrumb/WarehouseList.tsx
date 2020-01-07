@@ -1,43 +1,43 @@
-import React from 'react'
-import '../Breadcrumbs/companyBreadcrumb.css'
-import { Company, CompaniesState } from '../../../store/company/types'
-import { CompanyBreadcrumb } from '../CompanyBreadcrumb/CompanyBreadcrumb'
-import { getCompanies } from '../../../store/company/actions'
-import { connect } from 'react-redux'
-import { AppState } from '../../../store'
+import React from 'react';
+
+import { connect } from 'react-redux';
+import { AppState } from '../../../store';
+import { getWarehouses } from '../../../store/warehouse/actions';
+import { WarehouseState } from '../../../store/warehouse/types';
+import { WarehouseBreadcrumb } from './WarehouseBreadcumb';
 
 
-interface ICompanyBreadcrumbListProps
+interface IWarehouseBreadcrumbListProps
 {
-    getCompanies: typeof getCompanies;
-    companies?: CompaniesState   
+    getWarehouses: typeof getWarehouses 
+    warehouses?: WarehouseState 
 }
 
-interface ICompanyBreadcrumbListState
+interface IWarehouseBreadcrumbListState
 {
-    companies: Company[]
+
 }
 
 
- class WarehouseBreadcrumbList extends React.Component<ICompanyBreadcrumbListProps, ICompanyBreadcrumbListState> {
-constructor(props: ICompanyBreadcrumbListProps)
-{
-    super(props)
-    this.state = {
-        companies: []
+class WarehouseBreadcrumbList extends React.Component<IWarehouseBreadcrumbListProps, IWarehouseBreadcrumbListState> {
+    constructor(props: IWarehouseBreadcrumbListProps)
+    {
+        super(props)
+        this.state = {
+           
+        }
     }
-}
 
-async componentDidMount(){
-    await this.props.getCompanies()
- }
+    async componentDidMount(){
+        await this.props.getWarehouses()
+    }
 
     render(){
         return(
-            <div className="breadcrumbs-list-container">
-            <   div className="list-title">Companies</div>
-                {this.props.companies?.companies.map((company: any) =>
-                    <CompanyBreadcrumb {...company} />
+            <div className="warehouse-list-container">
+            <   div className="list-title">Warehouses</div>
+                {this.props.warehouses?.warehouses.map((warehouse: any) =>
+                    <WarehouseBreadcrumb {...warehouse} />
                 )}            
             </div>
         )
@@ -45,13 +45,10 @@ async componentDidMount(){
 }
 
 const mapStateToProps = (state: AppState) => ({
-    companies : state.companies
+    warehouses : state.warehouses
   });
   
   export default connect(
-    mapStateToProps,
-    {
-       getCompanies ,
-    }
+    mapStateToProps, { getWarehouses }
   )(WarehouseBreadcrumbList as any);
 

@@ -1,9 +1,9 @@
 import * as React from "react";
-import { createCompany, deleteCompany, updateCompany, getCompanies} from "../../store/company/actions";
-import {Company } from "../../store/company/types";
-import { AppState } from '../../store';
+import { createCompany, deleteCompany, updateCompany, getCompanies} from "../../../store/company/actions";
+import {Company } from "../../../store/company/types";
+import { AppState } from '../../../store';
 import { connect } from "react-redux";
-import '../Forms/formStyle.css';
+import '../../Forms/CompanyForms/formStyle.css';
 
 interface FormOwnProps{
     companies?: Company[]
