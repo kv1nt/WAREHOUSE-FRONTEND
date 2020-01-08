@@ -3,10 +3,11 @@ import { AppState } from '../../../store';
 import { connect } from "react-redux";
 import '../../Forms/LocationForms/addLocationForm.css';
 import { LocationModel } from "../../../store/location/types";
-import { createLocation } from "../../../store/location/actions";
+import { createLocation, getLocations } from "../../../store/location/actions";
 
 interface FormownProps{
     createLocation: typeof createLocation
+    getLocations: typeof getLocations
 }
 
 interface AddLocationState {
@@ -56,6 +57,7 @@ export  class AddLocationFrom extends React.Component<any,AddLocationState >{
                         id: null, companyId:null, warehouseId:null, city:city, zip:zip,
                         country: country, street: street, buildingNumber: buildingNumber, latitude:0,longtitude:0 };
          this.props.createLocation(location);
+         await this.props.getLocations()
     }
 
 
@@ -87,5 +89,5 @@ const mapStateToProps = (state: AppState) => ({});
 
   export default  connect(
     mapStateToProps,
-    { createLocation }
+    { createLocation, getLocations }
   )(AddLocationFrom as any);

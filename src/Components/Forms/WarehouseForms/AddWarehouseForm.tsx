@@ -117,7 +117,7 @@ export  class AddWarehouseForm extends React.Component<any,AddWarehouseState >{
                 <button className="add-warehouse-btn" onClick={this.saveWarehouse}>Save</button>
                 <button className="add-warehouse-btn" onClick={() => this.showCreateLocationForm()}>Create Location</button>
             </div>
-                {this.state.isLocationFormShow ? <AddLocationForm />: ""}
+                {this.state.isLocationFormShow ? <AddLocationForm {...this.props}/>: ""}
             </>
         );
     }

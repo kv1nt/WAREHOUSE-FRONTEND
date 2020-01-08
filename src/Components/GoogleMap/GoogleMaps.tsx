@@ -13,7 +13,8 @@ interface GoogleMapsProps{
 interface GoogleMapsState{
   country: string
   city: string
-  buildigNumber: string
+  buildigNumber: string,
+  street: string
 }
 
 class GoogleMaps extends React.Component<GoogleMapsProps, GoogleMapsState> {
@@ -22,7 +23,8 @@ class GoogleMaps extends React.Component<GoogleMapsProps, GoogleMapsState> {
     this.state ={
       country: '',
       city: '',
-      buildigNumber: ''
+      buildigNumber: '',
+      street: ''
     }
   }
 
@@ -34,19 +36,24 @@ class GoogleMaps extends React.Component<GoogleMapsProps, GoogleMapsState> {
     this.setState({
       country: location.country,
       city: location.city,
+      street: location.street,
       buildigNumber: location.buildingNumber.toString()
     })
   }
 
+
+  
   render() {
     const {locations} = this.props;
-    console.log(locations)
+    let BASE_PATH = "https://maps.google.com/maps?width=100%&amp;height=500&amp;hl=en&amp;&q=";
+    let URL_COFIG = "&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;&output=embed";
+    const URL = `${BASE_PATH}${this.state.city}%20${this.state.street}%20${this.state.buildigNumber}${URL_COFIG}`.replace('$','').toString();
+    console.log(URL)
     return (
         <>
         <div className="google-map-container">
-          <iframe width="100%" height="500"
-          src="https://maps.google.com/maps?width=100%&amp;height=500&amp;hl=en&amp;q=Soborna%201%20Vinnitsya+(My%20Company)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
-            ><a href="https://www.maps.ie/coordinates.html">latitude longitude finder</a></iframe>
+          <iframe width="100%" height="500"src={URL}>
+            <a href="https://www.maps.ie/coordinates.html">latitude longitude finder</a></iframe>
         </div>
         <div className="exists-locations-list">
             {locations.locations.map((location: LocationModel, index: number)=>

@@ -1,5 +1,5 @@
 import {
-    LocationAcionTypes, GET_LOCATIONS, LocationsState
+    LocationAcionTypes, GET_LOCATIONS, LocationsState, CREATE_LOCATION
 } from './types';
 
 const initialState : LocationsState = {
@@ -11,6 +11,10 @@ export function locationReducer(state = initialState, action: LocationAcionTypes
         case GET_LOCATIONS :
             return {
                 locations: [...action.payload]
+            }
+            case CREATE_LOCATION :
+            return {
+                locations: [...state.locations, action.payload]
             }
             default:
                 return state;
