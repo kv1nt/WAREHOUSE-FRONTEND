@@ -35,7 +35,7 @@ class WarehouseBreadcrumbList extends React.Component<IWarehouseBreadcrumbListPr
     render(){
         return(
             <div className="warehouse-list-container">
-            <   div className="list-title">Warehouses</div>
+                <div className="list-title">Warehouses</div>
                 {this.props.warehouses?.warehouses.map((warehouse: any) =>
                     <WarehouseBreadcrumb {...warehouse} />
                 )}            

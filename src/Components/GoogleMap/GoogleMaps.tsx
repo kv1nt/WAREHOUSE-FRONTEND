@@ -55,7 +55,7 @@ class GoogleMaps extends React.Component<GoogleMapsProps, GoogleMapsState> {
           <iframe width="100%" height="500"src={URL}>
             <a href="https://www.maps.ie/coordinates.html">latitude longitude finder</a></iframe>
         </div>
-        <div className="exists-locations-list">
+        <div className="exists-locations-list-google">
             {locations.locations.map((location: LocationModel, index: number)=>
              (<div className="location-breadcrumb" key={index+1} onClick={()=> this.getCurrLocation(location)}>
                 <div className="title">Location</div>

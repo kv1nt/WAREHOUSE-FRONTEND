@@ -1,8 +1,14 @@
 .breadcrumbs-list-container
 {
-    margin-left: 20%;
+    margin-left: 14%;
     overflow: auto; 
     width: 90%; 
+}
+
+.list-title-location
+{
+    margin-left: 300px;
+    margin-top: 20px;
 }
 
 .company-breadcrumb

@@ -3,12 +3,14 @@ import '../Menu/leftMenu.css';
 import { BrowserRouter as Router,
   Route,
   Link, 
-  Switch} from 'react-router-dom';
+  Switch,
+  Redirect} from 'react-router-dom';
 import GoogleMaps from '../GoogleMap/GoogleMaps';
 import CompaniesList from '../CompaniesList';
 import CompanyBreadcrumbList from '../Breadcrumbs/CompanyBreadcrumb/BreadcrumbList'
 import WarehouseList from '../Breadcrumbs/WarehouseBreadcrumb/WarehouseList';
 import WarehousesList from '../WarehousesList';
+import LogInForm from '../Forms/LogIn/LogInForm';
 
 
 interface LeftMenuProps{
@@ -38,7 +40,8 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
                 </ul>
             </div>
                 <Switch>
-                    <Route exact path='/' component={CompanyBreadcrumbList} />
+                    <Route path='/login' component={LogInForm} />
+                    <Route path='/' component={CompanyBreadcrumbList} />
                     <Route path='/companies' component={CompaniesList} />
                     <Route path='/warehouses' component={WarehousesList} />
                     <Route path='/locations' component={GoogleMaps} />

@@ -6,6 +6,7 @@ import { getCompanies } from '../../../store/company/actions'
 import { connect } from 'react-redux'
 import { AppState } from '../../../store'
 import WarehouseList from '../WarehouseBreadcrumb/WarehouseList'
+import LocationBreadcrumbs from '../LocationBreadcrumbs/LocationsBreadcrumbs'
 
 
 interface ICompanyBreadcrumbListProps
@@ -36,14 +37,17 @@ async componentDidMount(){
     render(){
         return(
             <>
+            <br/>
             <div className="breadcrumbs-list-container">
                 <div className="list-title">Companies</div>
                 {this.props.companies?.companies.map((company: any) =>
                     <CompanyBreadcrumb {...company} />
                 )}
             </div>
-            <div className="list-title">Warehouses</div>
-            <WarehouseList />
+            <br/>
+                <WarehouseList />
+            <div className="list-title-location">Locations</div>
+                <LocationBreadcrumbs />
             </>
         )
     }

@@ -1,11 +1,6 @@
-.google-map-container
+.exists-locations-list
 {
     margin-left: 14%;
-}
-
-.exists-locations-list-google
-{
-    margin-left: 14% !important;
     overflow: auto; 
     width: 90%; 
 }
@@ -22,10 +17,6 @@
     text-overflow: ellipsis;
 }
 
-.location-breadcrumb:hover
-{
-    border: solid 1px #c4ca8f;
-}
 
 .location-breadcrumb .title
 {
@@ -38,10 +29,6 @@
     padding-left: 5px;
 }
 
-.location-breadcrumb .title:hover
-{
-    background-color: #c4ca8f;
-}
 
 .location-breadcrumb .item-param
 {
