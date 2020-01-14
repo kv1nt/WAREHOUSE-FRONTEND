@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { AppState } from '../../../store'
 import WarehouseList from '../WarehouseBreadcrumb/WarehouseList'
 import LocationBreadcrumbs from '../LocationBreadcrumbs/LocationsBreadcrumbs'
+import { LeftMenu } from '../../Menu/LeftMenu'
 
 
 interface ICompanyBreadcrumbListProps
@@ -37,6 +38,7 @@ async componentDidMount(){
     render(){
         return(
             <>
+            <LeftMenu/>
             <br/>
             <div className="breadcrumbs-list-container">
                 <div className="list-title">Companies</div>

@@ -6,6 +6,7 @@ import { getCompanies, deleteCompany, deleteCompanyStore, createCompany } from '
 import  AddCompanyFrom  from "./Forms/CompanyForms/AddNewCompanyForm";
 import '../Components/styles/CompanyList.css';
 import UpdateCompanyForm from "./Forms/CompanyForms/UpdateCompanyForm";
+import { LeftMenu } from "./Menu/LeftMenu";
 
 
 interface AppOwnProps{
@@ -55,6 +56,8 @@ interface AppOwnProps{
     render() {
         const {companies} = this.props.companies;
       return (
+        <>
+        <LeftMenu/>
           <div className="comapnies-list-container">
             <div className="title-block">Companies:</div>
             {
@@ -80,7 +83,8 @@ interface AppOwnProps{
             <AddCompanyFrom {...this.props} />
             <div className="title-block">Update Company:</div>
             <UpdateCompanyForm {...this.state} />
-        </div>        
+        </div>  
+        </>      
       );
     }
   }

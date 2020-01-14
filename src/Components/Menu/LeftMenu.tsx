@@ -30,23 +30,14 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
 
     render() {
         return (  
-          <Router>
-            <div className="left-menu-container">
+          <div className="left-menu-container">
                 <ul>
-                  <li><Link to={'/'} >Home</Link></li>
+                  <li><Link to={'/all'} >Home</Link></li>
                   <li><Link to={'/companies'} >Company Service</Link></li>
                   <li><Link to={'/warehouses'} >Warehouse Service</Link></li>
                   <li><Link to={'/locations'} >Locations</Link></li>
                 </ul>
             </div>
-                <Switch>
-                    <Route path='/login' component={LogInForm} />
-                    <Route path='/' component={CompanyBreadcrumbList} />
-                    <Route path='/companies' component={CompaniesList} />
-                    <Route path='/warehouses' component={WarehousesList} />
-                    <Route path='/locations' component={GoogleMaps} />
-                </Switch> 
-            </Router> 
           );
     }
 }

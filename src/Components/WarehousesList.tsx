@@ -7,6 +7,7 @@ import { WarehouseState, Warehouse } from "../store/warehouse/types";
 import { AddWarehouseForm } from "./Forms/WarehouseForms/AddWarehouseForm";
 import { getLocations } from "../store/location/actions";
 import { LocationsState } from "../store/location/types";
+import { LeftMenu } from "./Menu/LeftMenu";
 
 
 interface AppOwnProps{
@@ -54,6 +55,8 @@ interface AppOwnProps{
     render() {
         const {warehouses} = this.props;
       return (
+        <>
+        <LeftMenu/>
           <div className="comapnies-list-container">
             <div className="title-block">Warehouses:</div>
             {
@@ -77,7 +80,8 @@ interface AppOwnProps{
             <br/>
             <div className="title-block">Add New Warehouse:</div>
             <AddWarehouseForm {...this.props} />
-        </div>        
+        </div>   
+        </>     
       );
     }
   }

@@ -5,6 +5,7 @@ import { getLocations } from '../../store/location/actions';
 import { AppState } from '../../store';
 import { connect } from 'react-redux';
 import { LocationsState, LocationModel } from '../../store/location/types';
+import { LeftMenu } from '../Menu/LeftMenu';
 
 interface GoogleMapsProps{
   getLocations: typeof getLocations
@@ -51,6 +52,7 @@ class GoogleMaps extends React.Component<GoogleMapsProps, GoogleMapsState> {
     console.log(URL)
     return (
         <>
+        <LeftMenu/>
         <div className="google-map-container">
           <iframe width="100%" height="500"src={URL}>
             <a href="https://www.maps.ie/coordinates.html">latitude longitude finder</a></iframe>

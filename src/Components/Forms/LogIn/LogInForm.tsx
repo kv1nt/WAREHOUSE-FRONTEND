@@ -31,8 +31,9 @@ class LogInForm extends React.Component<LogInFormProps, LogInFormState>{
 
     async login(){
         if(this.state.email === 'admin' && this.state.password === 'admin'){
-            // window.location.replace("http://localhost:3000/companies");
-            this.props.history.push('/companies')
+             this.props.history.push('/companies')
+    
+           
         }else{
             alert("Incorrect password of email!")
         }

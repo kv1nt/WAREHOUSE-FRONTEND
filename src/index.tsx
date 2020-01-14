@@ -1,19 +1,28 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { LeftMenu } from './Components/Menu/LeftMenu';
 import { Provider } from 'react-redux';
 import AppState from './store/index';
-import { BrowserRouter } from 'react-router-dom'
-import './index.css';
 import LogInForm from "./Components/Forms/LogIn/LogInForm";
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import CompaniesList from "./Components/CompaniesList";
+import WarehousesList from "./Components/WarehousesList";
+import GoogleMaps from "./Components/GoogleMap/GoogleMaps";
+import BreadcrumbList from "./Components/Breadcrumbs/CompanyBreadcrumb/BreadcrumbList";
+import './index.css';
 
 
 ReactDOM.render((
     <Provider store={AppState()}>
-        <BrowserRouter>
-            {/* <LeftMenu/> */}
-            <LogInForm/>
-        </BrowserRouter>
+        <Router>
+            <div>
+                <Switch>
+                    <Route path='/' exact component={LogInForm} />
+                    <Route path='/all' component={BreadcrumbList} />
+                    <Route path='/companies' component={CompaniesList} />
+                    <Route path='/warehouses' component={WarehousesList} />
+                    <Route path='/locations' component={GoogleMaps} />
+                </Switch>
+                </div>
+        </Router>
     </Provider>
   ), document.getElementById('root'))
