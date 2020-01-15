@@ -1,16 +1,6 @@
 import React from 'react';
 import '../Menu/leftMenu.css';
-import { BrowserRouter as Router,
-  Route,
-  Link, 
-  Switch,
-  Redirect} from 'react-router-dom';
-import GoogleMaps from '../GoogleMap/GoogleMaps';
-import CompaniesList from '../CompaniesList';
-import CompanyBreadcrumbList from '../Breadcrumbs/CompanyBreadcrumb/BreadcrumbList'
-import WarehouseList from '../Breadcrumbs/WarehouseBreadcrumb/WarehouseList';
-import WarehousesList from '../WarehousesList';
-import LogInForm from '../Forms/LogIn/LogInForm';
+import { Link} from 'react-router-dom';
 
 
 interface LeftMenuProps{

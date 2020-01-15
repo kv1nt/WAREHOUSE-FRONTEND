@@ -1,10 +1,14 @@
 import React from 'react';
 import './logInForm.css';
-import { withRouter, Redirect, Switch } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import {  History } from 'history';
+import { logInUser } from '../../../store/userLogin/actions';
+import { LoginForm } from '../../../store/userLogin/types';
+import { AppState } from '../../../store';
 
 interface LogInFormProps{
     history: History
+    logInUser: typeof logInUser
 }
 
 interface LogInFormState{
@@ -30,9 +34,11 @@ class LogInForm extends React.Component<LogInFormProps, LogInFormState>{
     }
 
     async login(){
+        let loginForm: LoginForm = {id: null, email: this.state.email, pwd: this.state.password}
+        // let res = await this.props.logInUser(loginForm);
+        // console.log(res)
         if(this.state.email === 'admin' && this.state.password === 'admin'){
-             this.props.history.push('/companies')
-    
+             this.props.history.push('/all')
            
         }else{
             alert("Incorrect password of email!")
@@ -41,7 +47,6 @@ class LogInForm extends React.Component<LogInFormProps, LogInFormState>{
 
 
     render(){
-        
         return(
             <div className="login-form-block">
                 <div className="input-block">
@@ -56,4 +61,13 @@ class LogInForm extends React.Component<LogInFormProps, LogInFormState>{
     }
 }
 
-export default withRouter(LogInForm as any)
+
+
+export default LogInForm 
+
+// const mapStateToProps = (state: AppState) => ({});
+
+//   export default  withRouter(
+//     mapStateToProps,
+//      {logInUser: (user: LogInForm) => logInUser(user)} 
+//   )(LogInForm as any);
