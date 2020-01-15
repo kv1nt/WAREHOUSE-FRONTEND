@@ -1,16 +1,16 @@
 import { 
-    LoginForm,
-    LOGIN
+    RegiserForm,
+    REGISTER_USER
  } from "./types";
 
 import axios from 'axios';
 
 //---------------------STORE-------------------------
 
-export function addLoginFormDataInStore(loginForm : LoginForm){
+export function addNewUserDataInStore(registerForm : RegiserForm){
     return{
-        type: LOGIN,
-        payload: loginForm
+        type: REGISTER_USER,
+        payload: registerForm
     }
 }
 
@@ -18,11 +18,11 @@ export function addLoginFormDataInStore(loginForm : LoginForm){
 
 //--------------------API-----------------------------
 
-export function logInUser(loginFromData : LoginForm)  {
+export function registerUser(registerForm : RegiserForm)  {
     return (dispatch : any, getState : any) => {
-        return axios.post(`/api/user`, loginFromData)
+        return axios.put(`/api/user`, registerForm)
         .then(res => {
-            dispatch(addLoginFormDataInStore(res.data));
+            dispatch(addNewUserDataInStore(res.data));
             return res.data;
         });
     }

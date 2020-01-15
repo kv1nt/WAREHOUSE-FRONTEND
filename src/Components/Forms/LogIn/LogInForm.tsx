@@ -25,6 +25,7 @@ class LogInForm extends React.Component<LogInFormProps, LogInFormState>{
             password: ''
         }
         this.login = this.login.bind(this)
+        this.redirectToRefisterForm = this.redirectToRefisterForm.bind(this)
     }
     
     async onChangeEmail(e: React.FormEvent<HTMLInputElement>){
@@ -38,11 +39,21 @@ class LogInForm extends React.Component<LogInFormProps, LogInFormState>{
     async login(){
         let loginForm: LoginForm = {id: null, email: this.state.email, password: this.state.password}
         var loginUser  = await this.props.logInUser(loginForm) as unknown as LoginForm;
-            if(this.state.email === loginUser.email && this.state.password === loginUser.password){
-                this.props.history.push('/all')          
-            }else{
-                alert("Incorrect password of email!")
+            if(loginUser.id === null){
+                this.props.history.push('/register')
+                return;
             }
+            if(this.state.email === loginUser.email && this.state.password === loginUser.password){
+                this.props.history.push('/all')   
+                return;
+            }else{ 
+                alert("Incorrect password of email!")
+                return;
+            }
+    }
+
+    async redirectToRefisterForm(){
+        this.props.history.push('/register')
     }
 
 
@@ -56,6 +67,7 @@ class LogInForm extends React.Component<LogInFormProps, LogInFormState>{
                     <span>Password: </span><input type="password" onChange={e => this.onChangePwd(e)} value={this.state.password} />
                 </div>
                 <button className="login-btn" onClick={this.login}>Login</button>
+                <button className="register-btn" onClick={this.redirectToRefisterForm}>Register New User</button>
             </div>
         )
     }

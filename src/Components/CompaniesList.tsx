@@ -62,21 +62,19 @@ interface AppOwnProps{
             <div className="title-block">Companies:</div>
             {
               companies.map((company: Company, i: number) =>{
-                return(
-                  <>
-                    <ul>
-                        <li key={i+1}>
-                          <div className="CompanyItem" onClick={()=> this.getCurrentCompany(company)}>
-                            <div className="DeleteCompany" onClick={()=> this.removeCompany(company.id)}>
-                              <button className="delete-company-btn">Delete</button>
-                            </div>
-                            <div className="company-title">{company.name}</div>
-                            <div className="company-description">{company.description}</div>
-                            </div>
-                        </li>
-                    </ul> 
-                  </>
-                )
+                return (
+                      <ul key={i}>
+                          <li>
+                            <div className="CompanyItem" onClick={()=> this.getCurrentCompany(company)}>
+                              <div className="DeleteCompany" onClick={()=> this.removeCompany(company.id)}>
+                                <button className="delete-company-btn">Delete</button>
+                              </div>
+                              <div className="company-title">{company.name}</div>
+                              <div className="company-description">{company.description}</div>
+                              </div>
+                          </li>
+                      </ul> 
+                    )
             })}
             <br/>
             <div className="title-block">Add New Company:</div>

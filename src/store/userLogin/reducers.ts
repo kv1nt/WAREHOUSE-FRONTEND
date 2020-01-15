@@ -5,7 +5,7 @@ import {
 } from './types';
 
 const initialState : LoginFormState = {
-    logInForm : {}
+    logInForm : {id: null,  email: '' ,password: ''}
 }
 
 export function userLoginReducer(state = initialState, action: LooginAcionTypes) : LoginFormState {

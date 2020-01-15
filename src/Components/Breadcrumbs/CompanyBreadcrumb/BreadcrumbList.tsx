@@ -42,8 +42,8 @@ async componentDidMount(){
             <br/>
             <div className="breadcrumbs-list-container">
                 <div className="list-title">Companies</div>
-                {this.props.companies?.companies.map((company: any) =>
-                    <CompanyBreadcrumb {...company} />
+                {this.props.companies?.companies.map((company: any, index: number) =>
+                    <CompanyBreadcrumb {...company} key={index}/>
                 )}
             </div>
             <br/>

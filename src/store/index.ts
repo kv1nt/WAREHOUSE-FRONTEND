@@ -5,12 +5,14 @@ import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { locationReducer } from './location/reducer';
 import { userLoginReducer } from './userLogin/reducers';
+import { userRegisterReducer } from './registerUser/reducers';
 
 const rootReducer = combineReducers ({
     companies: companyesReducer,
     warehouses: warehouseReducer,
     locations: locationReducer,
-    login: userLoginReducer
+    login: userLoginReducer,
+    register: userRegisterReducer
 })
 
 export type AppState = ReturnType<typeof rootReducer>

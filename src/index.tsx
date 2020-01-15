@@ -8,6 +8,7 @@ import CompaniesList from "./Components/CompaniesList";
 import WarehousesList from "./Components/WarehousesList";
 import GoogleMaps from "./Components/GoogleMap/GoogleMaps";
 import BreadcrumbList from "./Components/Breadcrumbs/CompanyBreadcrumb/BreadcrumbList";
+import RegisterUserForm from "./Components/Forms/RegisterUser/RegisterUserForm";
 import './index.css';
 
 
@@ -18,6 +19,7 @@ ReactDOM.render((
                 <Switch>
                     <Route path='/' exact component={LogInForm} />
                     <Route path='/all' component={BreadcrumbList} />
+                    <Route path='/register' component={RegisterUserForm} />
                     <Route path='/companies' component={CompaniesList} />
                     <Route path='/warehouses' component={WarehousesList} />
                     <Route path='/locations' component={GoogleMaps} />

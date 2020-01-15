@@ -5,7 +5,7 @@ export interface LoginForm {
 }
 
 export interface LoginFormState {
-    logInForm : {} 
+    logInForm : LoginForm
 } 
 
 export const LOGIN = "LOGIN";

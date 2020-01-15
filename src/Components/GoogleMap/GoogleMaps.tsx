@@ -49,7 +49,6 @@ class GoogleMaps extends React.Component<GoogleMapsProps, GoogleMapsState> {
     let BASE_PATH = "https://maps.google.com/maps?width=100%&amp;height=500&amp;hl=en&amp;&q=";
     let URL_COFIG = "&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;&output=embed";
     const URL = `${BASE_PATH}${this.state.city}%20${this.state.street}%20${this.state.buildigNumber}${URL_COFIG}`.replace('$','').toString();
-    console.log(URL)
     return (
         <>
         <LeftMenu/>

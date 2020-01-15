@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../../store';
 import { getWarehouses } from '../../../store/warehouse/actions';
-import { WarehouseState } from '../../../store/warehouse/types';
+import { WarehouseState, Warehouse } from '../../../store/warehouse/types';
 import { WarehouseBreadcrumb } from './WarehouseBreadcumb';
 
 
@@ -36,8 +36,8 @@ class WarehouseBreadcrumbList extends React.Component<IWarehouseBreadcrumbListPr
         return(
             <div className="warehouse-list-container">
                 <div className="list-title">Warehouses</div>
-                {this.props.warehouses?.warehouses.map((warehouse: any) =>
-                    <WarehouseBreadcrumb {...warehouse} />
+                {this.props.warehouses?.warehouses.map((warehouse: Warehouse, index: number) =>
+                    <WarehouseBreadcrumb {...warehouse} key={index}/>
                 )}            
             </div>
         )

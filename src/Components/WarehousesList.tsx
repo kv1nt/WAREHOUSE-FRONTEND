@@ -62,9 +62,8 @@ interface AppOwnProps{
             {
               warehouses.warehouses.map((warehouse: Warehouse, i: number) =>{
                 return(
-                  <>
-                    <ul>
-                        <li key={i+1}>
+                    <ul key={i}>
+                        <li>
                           <div className="CompanyItem">
                             <div className="DeleteCompany" onClick={()=> this.removeWarehouse(warehouse.id)}>
                               <button className="delete-company-btn">Delete</button>
@@ -74,7 +73,6 @@ interface AppOwnProps{
                             </div>
                         </li>
                     </ul> 
-                  </>
                 )
             })}
             <br/>
