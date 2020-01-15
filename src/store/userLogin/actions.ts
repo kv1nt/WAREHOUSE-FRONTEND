@@ -18,11 +18,12 @@ export function addLoginFormDataInStore(loginForm : LoginForm){
 
 //--------------------API-----------------------------
 
-export function logInUser(loginFromData : LoginForm) {
-    return (dispatch : any, getState : any) =>{
+export function logInUser(loginFromData : LoginForm)  {
+    return (dispatch : any, getState : any) => {
         return axios.post(`/api/login`, loginFromData)
         .then(res => {
-            return res;
+            dispatch(addLoginFormDataInStore(res.data));
+            return res.data;
         });
     }
 }

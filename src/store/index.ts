@@ -4,11 +4,13 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { locationReducer } from './location/reducer';
+import { userLoginReducer } from './userLogin/reducers';
 
 const rootReducer = combineReducers ({
     companies: companyesReducer,
     warehouses: warehouseReducer,
-    locations: locationReducer
+    locations: locationReducer,
+    login: userLoginReducer
 })
 
 export type AppState = ReturnType<typeof rootReducer>

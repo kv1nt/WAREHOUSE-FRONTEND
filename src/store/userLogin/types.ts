@@ -1,11 +1,11 @@
 export interface LoginForm {
     id: any,
     email: string
-    pwd: string
+    password: string
 }
 
 export interface LoginFormState {
-    loginForm : LoginForm []
+    logInForm : {} 
 } 
 
 export const LOGIN = "LOGIN";

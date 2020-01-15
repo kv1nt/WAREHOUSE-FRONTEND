@@ -5,6 +5,7 @@ import {  History } from 'history';
 import { logInUser } from '../../../store/userLogin/actions';
 import { LoginForm } from '../../../store/userLogin/types';
 import { AppState } from '../../../store';
+import { connect } from "react-redux";
 
 interface LogInFormProps{
     history: History
@@ -23,6 +24,7 @@ class LogInForm extends React.Component<LogInFormProps, LogInFormState>{
             email: '',
             password: ''
         }
+        this.login = this.login.bind(this)
     }
     
     async onChangeEmail(e: React.FormEvent<HTMLInputElement>){
@@ -34,15 +36,13 @@ class LogInForm extends React.Component<LogInFormProps, LogInFormState>{
     }
 
     async login(){
-        let loginForm: LoginForm = {id: null, email: this.state.email, pwd: this.state.password}
-        // let res = await this.props.logInUser(loginForm);
-        // console.log(res)
-        if(this.state.email === 'admin' && this.state.password === 'admin'){
-             this.props.history.push('/all')
-           
-        }else{
-            alert("Incorrect password of email!")
-        }
+        let loginForm: LoginForm = {id: null, email: this.state.email, password: this.state.password}
+        var loginUser  = await this.props.logInUser(loginForm) as unknown as LoginForm;
+            if(this.state.email === loginUser.email && this.state.password === loginUser.password){
+                this.props.history.push('/all')          
+            }else{
+                alert("Incorrect password of email!")
+            }
     }
 
 
@@ -55,7 +55,7 @@ class LogInForm extends React.Component<LogInFormProps, LogInFormState>{
                 <div className="input-block">
                     <span>Password: </span><input type="password" onChange={e => this.onChangePwd(e)} value={this.state.password} />
                 </div>
-                <button className="login-btn" onClick={()=>this.login()}>Login</button>
+                <button className="login-btn" onClick={this.login}>Login</button>
             </div>
         )
     }
@@ -63,11 +63,11 @@ class LogInForm extends React.Component<LogInFormProps, LogInFormState>{
 
 
 
-export default LogInForm 
+  const mapStateToProps = (state: AppState) => ({
+    login: state.login
+  });
 
-// const mapStateToProps = (state: AppState) => ({});
-
-//   export default  withRouter(
-//     mapStateToProps,
-//      {logInUser: (user: LogInForm) => logInUser(user)} 
-//   )(LogInForm as any);
+  export default  connect(
+    mapStateToProps,
+    { logInUser }
+  )(LogInForm as any);
