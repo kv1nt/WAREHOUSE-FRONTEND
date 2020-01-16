@@ -2,15 +2,18 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 import { AppState } from '../../../store';
-import { getWarehouses } from '../../../store/warehouse/actions';
+import { getWarehouses, getWarehousesByUserId } from '../../../store/warehouse/actions';
 import { WarehouseState, Warehouse } from '../../../store/warehouse/types';
 import { WarehouseBreadcrumb } from './WarehouseBreadcumb';
+import { LoginForm } from '../../../store/userLogin/types';
 
 
 interface IWarehouseBreadcrumbListProps
 {
     getWarehouses: typeof getWarehouses 
+    getWarehousesByUserId: typeof getWarehousesByUserId
     warehouses?: WarehouseState 
+    login:  LoginForm
 }
 
 interface IWarehouseBreadcrumbListState
@@ -29,7 +32,8 @@ class WarehouseBreadcrumbList extends React.Component<IWarehouseBreadcrumbListPr
     }
 
     async componentDidMount(){
-        await this.props.getWarehouses()
+        const { login } = this.props;
+       await this.props.getWarehousesByUserId(login.id)
     }
 
     render(){
@@ -45,10 +49,11 @@ class WarehouseBreadcrumbList extends React.Component<IWarehouseBreadcrumbListPr
 }
 
 const mapStateToProps = (state: AppState) => ({
-    warehouses : state.warehouses
+    warehouses : state.warehouses,
+    login: state.login.logInForm
   });
   
   export default connect(
-    mapStateToProps, { getWarehouses }
+    mapStateToProps, { getWarehouses , getWarehousesByUserId}
   )(WarehouseBreadcrumbList as any);
 

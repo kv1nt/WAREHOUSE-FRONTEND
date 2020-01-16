@@ -2,17 +2,20 @@ import * as React from "react";
 import { AppState } from '../../../store';
 import { connect } from "react-redux";
 import '../../Forms/WarehouseForms/addWarehouseForm.css';
-import { createWarehouse, getWarehouses } from "../../../store/warehouse/actions";
+import { createWarehouse, getWarehouses, getWarehousesByUserId } from "../../../store/warehouse/actions";
 import { Warehouse } from "../../../store/warehouse/types";
 import { getLocations } from "../../../store/location/actions";
 import { LocationsState, LocationModel } from "../../../store/location/types";
 import AddLocationForm from "../LocationForms/AddLocationForm";
+import { LoginForm } from "../../../store/userLogin/types";
 
 interface FormWarehouseProps{
     createWarehouse: typeof createWarehouse
     getWarehouses: typeof getWarehouses
+    getWarehousesByUserId: typeof getWarehousesByUserId
     getLocations: typeof getLocations
     locations: LocationsState
+    login:  LoginForm
 }
 
 interface AddWarehouseState {
@@ -41,8 +44,9 @@ export  class AddWarehouseForm extends React.Component<any,AddWarehouseState >{
     }
 
     async componentDidMount(){
-
-        await this.props.getWarehouses()
+        const {login} = this.props;
+        this.props.getWarehousesByUserId(login.id)
+        // await this.props.getWarehouses()
         await this.props.getLocations()
     }
 
@@ -60,18 +64,21 @@ export  class AddWarehouseForm extends React.Component<any,AddWarehouseState >{
     }
 
     saveWarehouse = async () =>{
+        const {login} = this.props;
         const {square, description} = this.state;
         if(square.toString().match(/\d+/g)){
             this.setState({errorInput: "", isError: false})
             const warehouse : Warehouse = {
                 id: null, 
+                userId: login.id,
                 companyId: null,
                 locationId: this.state.locationId,
                 square : square, 
                 description: description
                 };
             await this.props.createWarehouse(warehouse)
-            await this.props.getWarehouses()
+            // await this.props.getWarehouses()
+            this.props.getWarehousesByUserId(login.id)
             this.setState({isLocationFormShow: false})
         }else{
             this.setState({errorInput: "Digits only!", isError: true})
@@ -103,14 +110,14 @@ export  class AddWarehouseForm extends React.Component<any,AddWarehouseState >{
             </div>
             <div className="input-block">
                 <span>Locations: </span>
-                    <select onChange={this.getLocationId} className="select-css">{
-                    locations.locations.map((location: LocationModel, index : number) => {
+                    <select onChange={this.getLocationId} className="select-css">
+                        { locations.locations.map((location: LocationModel, index : number) => {
                             return (
                                 <option value={location.id} key={index+1}>
                                     {location.country}, {location.city}, {location.street},{location.buildingNumber} 
                                 </option>
                             )
-                        })
+                          })
                         }                   
                     </select>
             </div>
@@ -125,10 +132,11 @@ export  class AddWarehouseForm extends React.Component<any,AddWarehouseState >{
 
 const mapStateToProps = (state: AppState) => ({
     warehouses : state.warehouses,
-    locations: state.locations
+    locations: state.locations,
+    login: state.login.logInForm
   });
 
   export default  connect(
     mapStateToProps,
-    {  createWarehouse,  getWarehouses, getLocations}
+    {  createWarehouse,  getWarehouses, getLocations, getWarehousesByUserId}
   )(AddWarehouseForm as any);

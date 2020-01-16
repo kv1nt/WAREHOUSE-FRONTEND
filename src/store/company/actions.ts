@@ -53,6 +53,16 @@ export function getCompanies() {
    }
 }
 
+export function getCompaniesForUser(userId: any) {
+    return (dispatch : any, getState : any) =>{
+      return axios.get(`/api/company/${userId}`)
+        .then(res =>{
+            dispatch(getCompaniesFromStore(res.data));
+            return res.data;
+        })
+   }
+}
+
 export function createCompany(newCompany : Company) {
     return (dispatch : any, getState : any) =>{
         return axios.post(`/api/company`, newCompany)

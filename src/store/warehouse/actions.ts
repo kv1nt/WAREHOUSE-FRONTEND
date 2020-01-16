@@ -44,6 +44,16 @@ export function getWarehouses() {
    }
 }
 
+export function getWarehousesByUserId(userId: any) {
+    return (dispatch : any, getState : any) =>{
+      return axios.get(`/api/warehouse/${userId}`)
+        .then(res =>{
+            dispatch(getWarehouseFromStore(res.data));
+            return res.data;
+        })
+   }
+}
+
 export function createWarehouse(newWarehouse : Warehouse) {
     return (dispatch : any, getState : any) =>{
         return axios.post(`/api/warehouse`, newWarehouse)

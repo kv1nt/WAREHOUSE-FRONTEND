@@ -14,6 +14,7 @@ interface FormOwnProps{
     id: string,
     name: string,
     description: string
+    userId: any
 }
 
 interface UpdateCompanyState {
@@ -35,7 +36,7 @@ export  class UpdateCompanyForm extends React.Component<FormOwnProps,any >{
 
     componentWillReceiveProps(nextProps: Company){
         if(nextProps.id!==this.props.id && nextProps.name !==this.props.name){
-          this.setState({id: this.props.id, name: this.props.name, description: this.props.description });
+          this.setState({id: this.props.id, name: this.props.name, description: this.props.description, userId: null });
         }
       }
 
@@ -50,7 +51,7 @@ export  class UpdateCompanyForm extends React.Component<FormOwnProps,any >{
     saveCompany() {
          const {id, name, description} = this.state;
          console.log(this.state)
-            const company : Company = {name : name, description: description, id: id};
+            const company : Company = {name : name, description: description, id: id, userId: null};
             this.props.updateCompany(company);
         
     }

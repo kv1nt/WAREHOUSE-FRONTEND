@@ -2,19 +2,22 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { AppState } from '../store';
 import './styles/WarehousesList.css';
-import { getWarehouses, createWarehouse, deleteWarehouse } from "../store/warehouse/actions";
+import { getWarehouses, createWarehouse, deleteWarehouse, getWarehousesByUserId } from "../store/warehouse/actions";
 import { WarehouseState, Warehouse } from "../store/warehouse/types";
 import { AddWarehouseForm } from "./Forms/WarehouseForms/AddWarehouseForm";
 import { getLocations } from "../store/location/actions";
 import { LocationsState } from "../store/location/types";
 import { LeftMenu } from "./Menu/LeftMenu";
+import { LoginForm } from "../store/userLogin/types";
 
 
 interface AppOwnProps{
     createWarehouse: typeof createWarehouse
     getWarehouses: typeof getWarehouses
+    getWarehousesByUserId: typeof getWarehousesByUserId
     deleteWarehouse: typeof deleteWarehouse
     getLocations: typeof getLocations
+    login:  LoginForm
     onClick: (e: React.MouseEvent) => void
     warehouses: WarehouseState;
     locations: LocationsState
@@ -35,12 +38,14 @@ interface AppOwnProps{
     };
 
     async componentDidMount(){
-       await this.props.getWarehouses()
+       const { login } = this.props;
+       await this.props.getWarehousesByUserId(login.id)
     }
 
     async removeWarehouse(id: string) {
-      await this.props.deleteWarehouse(id)
-      await this.props.getWarehouses()
+        const { login } = this.props;
+        await this.props.deleteWarehouse(id)
+        await this.props.getWarehousesByUserId(login.id)
     }
 
      getCurrentWarehouse (warehouse: Warehouse) {
@@ -86,12 +91,14 @@ interface AppOwnProps{
   
   const mapStateToProps = (state: AppState) => ({
     warehouses : state.warehouses,
-    locations: state.locations
+    locations: state.locations,
+    login: state.login.logInForm
   });
   
   export default connect(
     mapStateToProps,
-    {
-        getWarehouses, createWarehouse, deleteWarehouse, getLocations
+    { 
+      getWarehouses, createWarehouse, deleteWarehouse,
+      getLocations, getWarehousesByUserId
     }
   )(WarehousesList as any);

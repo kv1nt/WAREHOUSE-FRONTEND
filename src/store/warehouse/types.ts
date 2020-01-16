@@ -1,6 +1,7 @@
 export interface Warehouse {
     id: any,
     companyId: any
+    userId: any
     locationId: any
     square: number,
     description: string

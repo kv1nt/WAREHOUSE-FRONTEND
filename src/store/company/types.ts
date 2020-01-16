@@ -1,5 +1,6 @@
 export interface Company {
     id: any,
+    userId: any,
     name: string,
     description: string
 }

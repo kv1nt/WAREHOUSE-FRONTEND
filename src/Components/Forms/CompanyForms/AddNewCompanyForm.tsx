@@ -4,8 +4,10 @@ import {Company } from "../../../store/company/types";
 import { AppState } from '../../../store';
 import { connect } from "react-redux";
 import '../../Forms/CompanyForms/formStyle.css';
+import { LoginForm } from "../../../store/userLogin/types";
 interface FormownProps{
     companies?: Company[]
+    login:  LoginForm
     createCompany : typeof createCompany;
     deleteCompany: typeof deleteCompany; 
     updateCompany: typeof updateCompany;
@@ -37,13 +39,16 @@ export  class AddCompanyFrom extends React.Component<any,AddCompanyState >{
 
     saveCompany = async () =>{
         const {name, desc} = this.state;
-        const company : Company = {name : name, description: desc, id: null};
+        const {login} = this.props
+        const company : Company = {name : name, description: desc, id: null, userId: login.id};
          this.props.createCompany(company);
          await this.props.getCompanies()
     }
 
 
     render(){
+        // const{login} = this.props
+        // console.log(login.id)
         return(
             <div className="add-company-form">
                 <div className="input-block">
@@ -59,7 +64,8 @@ export  class AddCompanyFrom extends React.Component<any,AddCompanyState >{
 }
 
 const mapStateToProps = (state: AppState) => ({
-    companies : state.companies
+    companies : state.companies,
+    login: state.login.logInForm
   });
 
   export default  connect(

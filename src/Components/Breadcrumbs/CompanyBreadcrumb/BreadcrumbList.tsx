@@ -2,17 +2,20 @@ import React from 'react'
 import '../CompanyBreadcrumb/companyBreadcrumb.css'
 import { Company, CompaniesState } from '../../../store/company/types'
 import { CompanyBreadcrumb } from '../CompanyBreadcrumb/CompanyBreadcrumb'
-import { getCompanies } from '../../../store/company/actions'
+import { getCompanies, getCompaniesForUser } from '../../../store/company/actions'
 import { connect } from 'react-redux'
 import { AppState } from '../../../store'
 import WarehouseList from '../WarehouseBreadcrumb/WarehouseList'
 import LocationBreadcrumbs from '../LocationBreadcrumbs/LocationsBreadcrumbs'
 import { LeftMenu } from '../../Menu/LeftMenu'
+import { LoginForm } from '../../../store/userLogin/types'
 
 
 interface ICompanyBreadcrumbListProps
 {
     getCompanies: typeof getCompanies;
+    getCompaniesForUser: typeof getCompaniesForUser;
+    login:  LoginForm
     companies?: CompaniesState   
 }
 
@@ -32,7 +35,8 @@ constructor(props: ICompanyBreadcrumbListProps)
 }
 
 async componentDidMount(){
-    await this.props.getCompanies()
+    const { login } = this.props
+    this.props.getCompaniesForUser(login.id)
  }
 
     render(){
@@ -56,13 +60,14 @@ async componentDidMount(){
 }
 
 const mapStateToProps = (state: AppState) => ({
-    companies : state.companies
+    companies : state.companies,
+    login: state.login.logInForm
   });
   
   export default connect(
     mapStateToProps,
     {
-       getCompanies ,
+       getCompanies , getCompaniesForUser
     }
   )(CompanyBreadcrumbList as any);
 
