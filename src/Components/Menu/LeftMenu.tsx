@@ -26,6 +26,7 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
                   <li><Link to={'/companies'} >Company Service</Link></li>
                   <li><Link to={'/warehouses'} >Warehouse Service</Link></li>
                   <li><Link to={'/locations'} >Locations</Link></li>
+                  <li><Link to={'/'} >Log Out</Link></li>
                 </ul>
             </div>
           );

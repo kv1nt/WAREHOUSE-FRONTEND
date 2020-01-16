@@ -1,6 +1,5 @@
 import React from 'react';
 import './logInForm.css';
-import { withRouter } from 'react-router-dom';
 import {  History } from 'history';
 import { logInUser } from '../../../store/userLogin/actions';
 import { LoginForm } from '../../../store/userLogin/types';
@@ -28,34 +27,25 @@ class LogInForm extends React.Component<LogInFormProps, LogInFormState>{
         this.redirectToRefisterForm = this.redirectToRefisterForm.bind(this)
     }
     
-    async onChangeEmail(e: React.FormEvent<HTMLInputElement>){
-        this.setState({email: await e.currentTarget.value})
-    }
-
-    async onChangePwd(e: React.FormEvent<HTMLInputElement>){
-        await this.setState({password: await e.currentTarget.value})
-    }
+    async onChangeEmail(e: React.FormEvent<HTMLInputElement>) { this.setState({email: await e.currentTarget.value}) }
+    async onChangePwd(e: React.FormEvent<HTMLInputElement>) { this.setState({password: await e.currentTarget.value}) }
 
     async login(){
         let loginForm: LoginForm = {id: null, email: this.state.email, password: this.state.password}
         var loginUser  = await this.props.logInUser(loginForm) as unknown as LoginForm;
             if(loginUser.id === null){
-                this.props.history.push('/register')
-                return;
+                alert(`User with email "${loginUser.email}" doesn't exist, please register this user`)
+                this.props.history.push('/register'); return;
             }
             if(this.state.email === loginUser.email && this.state.password === loginUser.password){
-                this.props.history.push('/all')   
-                return;
+                this.props.history.push('/all'); return;
             }else{ 
-                alert("Incorrect password of email!")
+                alert("Incorrect password or email!")
                 return;
             }
     }
 
-    async redirectToRefisterForm(){
-        this.props.history.push('/register')
-    }
-
+    redirectToRefisterForm(){ this.props.history.push('/register') }
 
     render(){
         return(
@@ -73,13 +63,5 @@ class LogInForm extends React.Component<LogInFormProps, LogInFormState>{
     }
 }
 
-
-
-  const mapStateToProps = (state: AppState) => ({
-    login: state.login
-  });
-
-  export default  connect(
-    mapStateToProps,
-    { logInUser }
-  )(LogInForm as any);
+  const mapStateToProps = (state: AppState) => ({ login: state.login });
+  export default  connect( mapStateToProps, { logInUser } ) (LogInForm as any);
