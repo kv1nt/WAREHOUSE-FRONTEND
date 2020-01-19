@@ -2,7 +2,7 @@ import React from 'react'
 import '../CompanyBreadcrumb/companyBreadcrumb.css'
 
 import { Company } from '../../../store/company/types'
-import { getCompanies } from '../../../store/company/actions'
+import { getCompaniesForUser } from '../../../store/company/actions'
 
 interface ICompanyBreadcrumbState
 {
@@ -12,7 +12,7 @@ interface ICompanyBreadcrumbState
 
 interface ICompanyBreadcrumbProps
 {
-    getCompanies: typeof getCompanies;
+    getCompaniesForUser: typeof getCompaniesForUser;
     name: string
     description: string
 }

@@ -9,7 +9,9 @@ import WarehousesList from "./Components/WarehousesList";
 import GoogleMaps from "./Components/GoogleMap/GoogleMaps";
 import BreadcrumbList from "./Components/Breadcrumbs/CompanyBreadcrumb/BreadcrumbList";
 import RegisterUserForm from "./Components/Forms/RegisterUser/RegisterUserForm";
+
 import './index.css';
+import UserInfoPage from "./Components/Forms/UserInfoPage/UserInfoPage";
 
 
 ReactDOM.render((
@@ -22,7 +24,8 @@ ReactDOM.render((
                     <Route path='/register' component={RegisterUserForm} />
                     <Route path='/companies' component={CompaniesList} />
                     <Route path='/warehouses' component={WarehousesList} />
-                    <Route path='/locations' component={GoogleMaps} />
+                    <Route path='/locations' component={GoogleMaps} /> 
+                    <Route path='/userinfo' component={UserInfoPage} />
                 </Switch>
                 </div>
         </Router>

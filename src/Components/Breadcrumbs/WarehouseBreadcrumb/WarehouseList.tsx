@@ -2,7 +2,7 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 import { AppState } from '../../../store';
-import { getWarehouses, getWarehousesByUserId } from '../../../store/warehouse/actions';
+import { getWarehousesByUserId } from '../../../store/warehouse/actions';
 import { WarehouseState, Warehouse } from '../../../store/warehouse/types';
 import { WarehouseBreadcrumb } from './WarehouseBreadcumb';
 import { LoginForm } from '../../../store/userLogin/types';
@@ -10,7 +10,6 @@ import { LoginForm } from '../../../store/userLogin/types';
 
 interface IWarehouseBreadcrumbListProps
 {
-    getWarehouses: typeof getWarehouses 
     getWarehousesByUserId: typeof getWarehousesByUserId
     warehouses?: WarehouseState 
     login:  LoginForm
@@ -54,6 +53,6 @@ const mapStateToProps = (state: AppState) => ({
   });
   
   export default connect(
-    mapStateToProps, { getWarehouses , getWarehousesByUserId}
+    mapStateToProps, {  getWarehousesByUserId}
   )(WarehouseBreadcrumbList as any);
 

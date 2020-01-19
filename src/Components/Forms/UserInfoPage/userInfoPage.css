@@ -1,0 +1,33 @@
+.user-info-container
+{
+    margin-left: 20%;
+    margin-top: 1%;
+    width: 50%; 
+    padding: 1%;
+    background-color: #739DD2;
+}
+
+.user-item
+{
+    margin: 2%;
+}
+
+.user-item span
+{
+    color: white;
+    font-size: 20px;
+}
+
+.update-user-btn
+{
+    background-color: #4ca74c;
+    border: none;
+    color: white;
+    padding: 5px 26px;
+    text-align: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+}

@@ -2,18 +2,20 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { AppState } from '../store';
 import { CompaniesState, Company } from "../store/company/types";
-import { getCompanies, deleteCompany, deleteCompanyStore, createCompany } from '../store/company/actions';
+import { deleteCompany, deleteCompanyStore, createCompany, getCompaniesForUser } from '../store/company/actions';
 import  AddCompanyFrom  from "./Forms/CompanyForms/AddNewCompanyForm";
 import '../Components/styles/CompanyList.css';
 import UpdateCompanyForm from "./Forms/CompanyForms/UpdateCompanyForm";
 import { LeftMenu } from "./Menu/LeftMenu";
+import { LoginForm } from "../store/userLogin/types";
 
 
 interface AppOwnProps{
-    getCompanies: typeof getCompanies;
-    createCompany: typeof createCompany;
+    createCompany: typeof createCompany; 
+    getCompaniesForUser: typeof  getCompaniesForUser
     deleteCompany: typeof deleteCompany;
     deleteCompanyStore: typeof deleteCompanyStore;
+    login: LoginForm
     onClick: (e: React.MouseEvent) => void
     companies: CompaniesState;
     company: Company 
@@ -34,13 +36,15 @@ interface AppOwnProps{
     };
 
     async componentDidMount(){
-       await this.props.getCompanies()
+      const { login } = this.props
+      this.props.getCompaniesForUser(login.id)
     }
 
     async removeCompany(id: any) {
+      const { login } = this.props
       this.props.deleteCompany(id);
       this.props.deleteCompanyStore(id);
-      await this.props.getCompanies()
+      await this.props.getCompaniesForUser(login.id)
     }
 
     async getCurrentCompany (company: Company) {
@@ -88,13 +92,14 @@ interface AppOwnProps{
   }
   
   const mapStateToProps = (state: AppState) => ({
-    companies : state.companies
+    companies : state.companies,
+    login: state.login.logInForm
   });
   
   export default connect(
     mapStateToProps,
     {
-       getCompanies , deleteCompany,
+      getCompaniesForUser , deleteCompany,
        deleteCompanyStore, createCompany
     }
   )(CompaniesList as any);

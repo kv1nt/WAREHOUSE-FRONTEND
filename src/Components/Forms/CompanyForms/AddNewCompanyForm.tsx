@@ -1,5 +1,5 @@
 import * as React from "react";
-import { createCompany, deleteCompany, updateCompany, getCompanies} from "../../../store/company/actions";
+import { createCompany, deleteCompany, updateCompany, getCompaniesForUser} from "../../../store/company/actions";
 import {Company } from "../../../store/company/types";
 import { AppState } from '../../../store';
 import { connect } from "react-redux";
@@ -11,7 +11,7 @@ interface FormownProps{
     createCompany : typeof createCompany;
     deleteCompany: typeof deleteCompany; 
     updateCompany: typeof updateCompany;
-    getCompanies: typeof getCompanies;
+    getCompaniesForUser: typeof getCompaniesForUser;
 }
 
 interface AddCompanyState {
@@ -42,13 +42,11 @@ export  class AddCompanyFrom extends React.Component<any,AddCompanyState >{
         const {login} = this.props
         const company : Company = {name : name, description: desc, id: null, userId: login.id};
          this.props.createCompany(company);
-         await this.props.getCompanies()
+         await this.props.getCompaniesForUser(login.id)
     }
 
 
     render(){
-        // const{login} = this.props
-        // console.log(login.id)
         return(
             <div className="add-company-form">
                 <div className="input-block">
@@ -70,5 +68,5 @@ const mapStateToProps = (state: AppState) => ({
 
   export default  connect(
     mapStateToProps,
-    { createCompany }
+    { createCompany, getCompaniesForUser }
   )(AddCompanyFrom as any);

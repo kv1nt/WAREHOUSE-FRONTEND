@@ -6,13 +6,15 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { locationReducer } from './location/reducer';
 import { userLoginReducer } from './userLogin/reducers';
 import { userRegisterReducer } from './registerUser/reducers';
+import { userPhotoReducer } from './userImage/reducers';
 
 const rootReducer = combineReducers ({
     companies: companyesReducer,
     warehouses: warehouseReducer,
     locations: locationReducer,
     login: userLoginReducer,
-    register: userRegisterReducer
+    register: userRegisterReducer,
+    userphoto: userPhotoReducer
 })
 
 export type AppState = ReturnType<typeof rootReducer>

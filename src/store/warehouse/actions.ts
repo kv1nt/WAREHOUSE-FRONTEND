@@ -34,16 +34,6 @@ export function deleteWarehouseStore(id : string){
 
 //--------------------API-----------------------------
 
-export function getWarehouses() {
-    return (dispatch : any, getState : any) =>{
-      return axios.get(`/api/warehouse`)
-        .then(res =>{
-            dispatch(getWarehouseFromStore(res.data));
-            return res.data;
-        })
-   }
-}
-
 export function getWarehousesByUserId(userId: any) {
     return (dispatch : any, getState : any) =>{
       return axios.get(`/api/warehouse/${userId}`)

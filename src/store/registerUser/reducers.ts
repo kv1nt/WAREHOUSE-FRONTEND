@@ -1,7 +1,9 @@
 import {
     RegisterFormState,
     RegisterUserAcionTypes,
-    REGISTER_USER
+    REGISTER_USER,
+    GET_USER,
+    UPDATE_USER
 } from './types';
 
 const initialState : RegisterFormState = {
@@ -13,7 +15,15 @@ export function userRegisterReducer(state = initialState, action: RegisterUserAc
         case REGISTER_USER:
             return {
                 registerForm: action.payload
-            }       
+            } 
+        case GET_USER:
+            return {
+                registerForm: action.payload  
+            } 
+        case UPDATE_USER:
+            return {
+                registerForm: action.payload
+            }     
             default:
                 return state;
     }

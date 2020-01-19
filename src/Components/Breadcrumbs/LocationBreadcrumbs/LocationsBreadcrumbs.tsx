@@ -1,14 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getLocations } from '../../../store/location/actions';
+import {  getLocationsByUserId } from '../../../store/location/actions';
 import { LocationsState, LocationModel } from '../../../store/location/types';
 import { AppState } from '../../../store';
 import './locationBreadcrumbs.css';
+import { LoginForm } from '../../../store/userLogin/types';
 
 
 interface LocationsProps{
-  getLocations: typeof getLocations
+  getLocationsByUserId: typeof getLocationsByUserId
   locations: LocationsState
+  login:  LoginForm
 }
 interface LocatiuonsState{
   country: string
@@ -17,7 +19,7 @@ interface LocatiuonsState{
   street: string
 }
 
-class LocationBreadcrumbs extends React.Component<LocationsProps, LocatiuonsState> {
+export class LocationBreadcrumbs extends React.Component<LocationsProps, LocatiuonsState> {
   constructor(props:LocationsProps){
     super(props)
     this.state ={
@@ -29,7 +31,8 @@ class LocationBreadcrumbs extends React.Component<LocationsProps, LocatiuonsStat
   }
 
   componentDidMount(){
-    this.props.getLocations()
+    const { login } = this.props
+    this.props.getLocationsByUserId(login.id)
   }
   
   render() {
@@ -53,13 +56,14 @@ class LocationBreadcrumbs extends React.Component<LocationsProps, LocatiuonsStat
 }
 
 const mapStateToProps = (state: AppState) => ({
-  locations : state.locations
+  locations : state.locations,
+  login: state.login.logInForm
 });
 
 export default connect(
   mapStateToProps,
   {
-    getLocations
+     getLocationsByUserId
   }
 )(LocationBreadcrumbs as any);
 

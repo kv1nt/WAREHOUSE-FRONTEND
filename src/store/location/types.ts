@@ -1,5 +1,6 @@
 export interface LocationModel {
-    id: any
+    id: any,
+    userId: any,
     companyId: any,
     warehouseId: any,
     city: string,
@@ -31,4 +32,4 @@ interface CreateLocation {
 
 
 
-export type LocationAcionTypes = GetLocations | CreateLocation;
+export type LocationAcionTypes = GetLocations & CreateLocation;

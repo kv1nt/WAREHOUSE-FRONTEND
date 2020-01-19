@@ -2,21 +2,20 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { AppState } from '../store';
 import './styles/WarehousesList.css';
-import { getWarehouses, createWarehouse, deleteWarehouse, getWarehousesByUserId } from "../store/warehouse/actions";
+import { createWarehouse, deleteWarehouse, getWarehousesByUserId } from "../store/warehouse/actions";
 import { WarehouseState, Warehouse } from "../store/warehouse/types";
 import { AddWarehouseForm } from "./Forms/WarehouseForms/AddWarehouseForm";
-import { getLocations } from "../store/location/actions";
 import { LocationsState } from "../store/location/types";
 import { LeftMenu } from "./Menu/LeftMenu";
 import { LoginForm } from "../store/userLogin/types";
+import { getLocationsByUserId } from "../store/location/actions";
 
 
 interface AppOwnProps{
     createWarehouse: typeof createWarehouse
-    getWarehouses: typeof getWarehouses
     getWarehousesByUserId: typeof getWarehousesByUserId
     deleteWarehouse: typeof deleteWarehouse
-    getLocations: typeof getLocations
+    getLocationsByUserId: typeof getLocationsByUserId
     login:  LoginForm
     onClick: (e: React.MouseEvent) => void
     warehouses: WarehouseState;
@@ -98,7 +97,7 @@ interface AppOwnProps{
   export default connect(
     mapStateToProps,
     { 
-      getWarehouses, createWarehouse, deleteWarehouse,
-      getLocations, getWarehousesByUserId
+      createWarehouse, deleteWarehouse,
+      getLocationsByUserId, getWarehousesByUserId
     }
   )(WarehousesList as any);

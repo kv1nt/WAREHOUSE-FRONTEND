@@ -2,18 +2,17 @@ import * as React from "react";
 import { AppState } from '../../../store';
 import { connect } from "react-redux";
 import '../../Forms/WarehouseForms/addWarehouseForm.css';
-import { createWarehouse, getWarehouses, getWarehousesByUserId } from "../../../store/warehouse/actions";
+import { createWarehouse, getWarehousesByUserId } from "../../../store/warehouse/actions";
 import { Warehouse } from "../../../store/warehouse/types";
-import { getLocations } from "../../../store/location/actions";
+import { getLocationsByUserId } from "../../../store/location/actions";
 import { LocationsState, LocationModel } from "../../../store/location/types";
 import AddLocationForm from "../LocationForms/AddLocationForm";
 import { LoginForm } from "../../../store/userLogin/types";
 
 interface FormWarehouseProps{
     createWarehouse: typeof createWarehouse
-    getWarehouses: typeof getWarehouses
     getWarehousesByUserId: typeof getWarehousesByUserId
-    getLocations: typeof getLocations
+    getLocationsByUserId: typeof getLocationsByUserId
     locations: LocationsState
     login:  LoginForm
 }
@@ -44,10 +43,9 @@ export  class AddWarehouseForm extends React.Component<any,AddWarehouseState >{
     }
 
     async componentDidMount(){
-        const {login} = this.props;
+        const {login} = this.props
         this.props.getWarehousesByUserId(login.id)
-        // await this.props.getWarehouses()
-        await this.props.getLocations()
+        await  getLocationsByUserId(login.id)
     }
 
     onChangeSquare = (e: React.FormEvent<HTMLInputElement>) =>{
@@ -77,7 +75,6 @@ export  class AddWarehouseForm extends React.Component<any,AddWarehouseState >{
                 description: description
                 };
             await this.props.createWarehouse(warehouse)
-            // await this.props.getWarehouses()
             this.props.getWarehousesByUserId(login.id)
             this.setState({isLocationFormShow: false})
         }else{
@@ -86,7 +83,7 @@ export  class AddWarehouseForm extends React.Component<any,AddWarehouseState >{
     }
 
 
-     getLocationId(e: any){       
+    getLocationId(e: any){       
         let locId : string = e.target.value.toString();
          this.setState({locationId: locId})
     }
@@ -138,5 +135,7 @@ const mapStateToProps = (state: AppState) => ({
 
   export default  connect(
     mapStateToProps,
-    {  createWarehouse,  getWarehouses, getLocations, getWarehousesByUserId}
+    { getLocationsByUserId, createWarehouse,
+      getWarehousesByUserId
+    }
   )(AddWarehouseForm as any);

@@ -1,13 +1,17 @@
 import * as React from "react";
 import { AppState } from '../../../store';
 import { connect } from "react-redux";
+import {  History } from 'history';
 import '../../Forms/LocationForms/addLocationForm.css';
 import { LocationModel } from "../../../store/location/types";
-import { createLocation, getLocations } from "../../../store/location/actions";
+import { createLocation, getLocationsByUserId } from "../../../store/location/actions";
+import { LoginForm } from "../../../store/userLogin/types";
 
 interface FormownProps{
     createLocation: typeof createLocation
-    getLocations: typeof getLocations
+    getLocationsByUserId: typeof getLocationsByUserId
+    login: LoginForm
+    history: History
 }
 
 interface AddLocationState {
@@ -52,12 +56,16 @@ export  class AddLocationFrom extends React.Component<any,AddLocationState >{
     }
 
     saveLocation = async () =>{
-        const {city,country,street,buildingNumber,zip} = this.state;
+        const { city, country, street, buildingNumber, zip} = this.state;
+        const { login } = this.props;
         const location : LocationModel = {
                         id: null, companyId:null, warehouseId:null, city:city, zip:zip,
-                        country: country, street: street, buildingNumber: buildingNumber, latitude:0,longtitude:0 };
+                        country: country, street: street, buildingNumber: buildingNumber, 
+                        latitude:0,longtitude:0, userId: login.id
+                     };
          this.props.createLocation(location);
-         await this.props.getLocations()
+         this.props.history.push('/locations');
+         await this.props.getLocationsByUserId(login.id)
     }
 
 
@@ -85,9 +93,11 @@ export  class AddLocationFrom extends React.Component<any,AddLocationState >{
     }
 }
 
-const mapStateToProps = (state: AppState) => ({});
+const mapStateToProps = (state: AppState) => ({
+    login: state.login.logInForm
+});
 
   export default  connect(
     mapStateToProps,
-    { createLocation, getLocations }
+    { createLocation, getLocationsByUserId }
   )(AddLocationFrom as any);

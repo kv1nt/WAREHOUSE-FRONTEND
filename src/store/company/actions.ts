@@ -43,15 +43,6 @@ export function updateCompaniesStore(company : Company){
 
 
 //--------------------API-----------------------------
-export function getCompanies() {
-    return (dispatch : any, getState : any) =>{
-      return axios.get(`/api/company`)
-        .then(res =>{
-            dispatch(getCompaniesFromStore(res.data));
-            return res.data;
-        })
-   }
-}
 
 export function getCompaniesForUser(userId: any) {
     return (dispatch : any, getState : any) =>{

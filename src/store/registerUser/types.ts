@@ -11,6 +11,8 @@ export interface RegisterFormState {
 } 
 
 export const REGISTER_USER = "REGISTER_USER";
+export const UPDATE_USER = "UPDATE_USER";
+export const GET_USER = "GET_USER";
 
 
 interface Register {
@@ -18,6 +20,16 @@ interface Register {
     payload: RegiserForm
 }
 
+interface GetUser {
+    type: typeof GET_USER;
+    payload: RegiserForm
+}
+
+interface UpdateUser {
+    type: typeof UPDATE_USER;
+    payload: RegiserForm
+}
 
 
-export type RegisterUserAcionTypes = Register
+
+export type RegisterUserAcionTypes = Register & GetUser & UpdateUser

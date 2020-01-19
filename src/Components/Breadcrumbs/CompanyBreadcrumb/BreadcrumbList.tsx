@@ -2,7 +2,7 @@ import React from 'react'
 import '../CompanyBreadcrumb/companyBreadcrumb.css'
 import { Company, CompaniesState } from '../../../store/company/types'
 import { CompanyBreadcrumb } from '../CompanyBreadcrumb/CompanyBreadcrumb'
-import { getCompanies, getCompaniesForUser } from '../../../store/company/actions'
+import {  getCompaniesForUser } from '../../../store/company/actions'
 import { connect } from 'react-redux'
 import { AppState } from '../../../store'
 import WarehouseList from '../WarehouseBreadcrumb/WarehouseList'
@@ -13,7 +13,6 @@ import { LoginForm } from '../../../store/userLogin/types'
 
 interface ICompanyBreadcrumbListProps
 {
-    getCompanies: typeof getCompanies;
     getCompaniesForUser: typeof getCompaniesForUser;
     login:  LoginForm
     companies?: CompaniesState   
@@ -67,7 +66,7 @@ const mapStateToProps = (state: AppState) => ({
   export default connect(
     mapStateToProps,
     {
-       getCompanies , getCompaniesForUser
+       getCompaniesForUser
     }
   )(CompanyBreadcrumbList as any);
 

@@ -27,9 +27,9 @@ export function createLocationInStore(location: LocationModel){
 
 //--------------------API-----------------------------
 
-export function getLocations() {
+export function getLocationsByUserId(userId : any) {
     return (dispatch : any, getState : any) =>{
-      return axios.get(`/api/location`)
+      return axios.get(`/api/location/${userId}`)
         .then(res =>{
             dispatch(getLocationsFromStore(res.data));
             return res.data;

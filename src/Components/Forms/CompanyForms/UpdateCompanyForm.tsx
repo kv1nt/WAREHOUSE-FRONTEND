@@ -1,5 +1,5 @@
 import * as React from "react";
-import { createCompany, deleteCompany, updateCompany, getCompanies} from "../../../store/company/actions";
+import { createCompany, deleteCompany, updateCompany, getCompaniesForUser} from "../../../store/company/actions";
 import {Company } from "../../../store/company/types";
 import { AppState } from '../../../store';
 import { connect } from "react-redux";
@@ -11,7 +11,7 @@ interface FormOwnProps{
     createCompany : typeof createCompany;
     deleteCompany: typeof deleteCompany; 
     updateCompany: typeof updateCompany;
-    getCompanies: typeof getCompanies;
+    getCompaniesForUser: typeof getCompaniesForUser;
     login:  LoginForm
     id: string,
     name: string,
@@ -26,7 +26,7 @@ interface UpdateCompanyState {
 }
 
 export  class UpdateCompanyForm extends React.Component<FormOwnProps,any >{
-    constructor(props:FormOwnProps,){
+    constructor(props:FormOwnProps){
         super(props)
 
         this.state = {
@@ -87,5 +87,5 @@ const mapStateToProps = (state: AppState) => ({
 
   export default  connect(
     mapStateToProps,
-    { updateCompany }
+    { updateCompany, getCompaniesForUser }
   )(UpdateCompanyForm as any);

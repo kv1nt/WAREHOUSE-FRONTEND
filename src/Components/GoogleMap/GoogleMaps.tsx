@@ -1,15 +1,17 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
-import React, { Component } from 'react';
+import React from 'react';
 import './googleMap.css'
-import { getLocations } from '../../store/location/actions';
+import { getLocationsByUserId } from '../../store/location/actions';
 import { AppState } from '../../store';
 import { connect } from 'react-redux';
 import { LocationsState, LocationModel } from '../../store/location/types';
 import { LeftMenu } from '../Menu/LeftMenu';
+import { LoginForm } from '../../store/userLogin/types';
 
 interface GoogleMapsProps{
-  getLocations: typeof getLocations
+  getLocationsByUserId: typeof getLocationsByUserId
   locations: LocationsState
+  login: LoginForm
 }
 interface GoogleMapsState{
   country: string
@@ -29,8 +31,9 @@ class GoogleMaps extends React.Component<GoogleMapsProps, GoogleMapsState> {
     }
   }
 
-  componentDidMount(){
-    this.props.getLocations()
+  async componentDidMount(){
+    const { login } = this.props;
+    getLocationsByUserId(login.id)
   }
 
   getCurrLocation(location: LocationModel){
@@ -73,13 +76,14 @@ class GoogleMaps extends React.Component<GoogleMapsProps, GoogleMapsState> {
 }
 
 const mapStateToProps = (state: AppState) => ({
-  locations : state.locations
+  locations : state.locations,
+  login: state.login.logInForm
 });
 
 export default connect(
   mapStateToProps,
   {
-    getLocations
+    getLocationsByUserId
   }
 )(GoogleMaps as any);
 
