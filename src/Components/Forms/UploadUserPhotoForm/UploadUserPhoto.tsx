@@ -4,13 +4,14 @@ import { connect } from "react-redux";
 import ImageUploader from 'react-images-upload';
 import { uploadUserPhoto } from "../../../store/userImage/actions";
 import { UserImage } from "../../../store/userImage/types";
-import fs from 'fs'
+import { LoginForm } from "../../../store/userLogin/types";
 
 
 
 interface FormOwnProps{
     uploadUserPhoto: typeof uploadUserPhoto
     userphoto: UserImage
+    login:  LoginForm
 }
 
 
@@ -31,30 +32,27 @@ class UploadUserPhoto extends React.Component<FormOwnProps,PhotoState>{
     }
 
 
-     getBase64(file: any): any {
-         const blob = file[0] as Blob;       
-        let reader = new FileReader();
+    async readFile(files : any, onLoadCallback: any) : Promise<any>{
+        var reader = new FileReader();
+        var blob = await files[0] as Blob
+        reader.onload = onLoadCallback;
         reader.readAsDataURL(blob);
-        reader.onload = function ()  {
-            console.log(reader.result)
-        };
-        
-     }
+    }
 
-    async onDrop(picture : any) {
-         if(this.state.pictures.length < 1) // only one image upload
-           await this.setState({ pictures: this.state.pictures.concat(picture) });
-           let res =  this.getBase64(this.state.pictures)
-           console.log(res)
-            const userImage : UserImage= {id: null, userId: '', content: this.getBase64(this.state.pictures)}
-             this.props.uploadUserPhoto(userImage)
+     onDrop (picture : any){
+         const {login} =this.props;
+      this.readFile(picture, async function(e: any) { 
+        var userImage : UserImage  = {id: '', userId: login.id , content: e.target.result.toString() };
+           await uploadUserPhoto(userImage)
+        }) 
+             
      }
 
 
 
     render() {
-        return(
-            <>
+        return(  
+            <form>         
                 <ImageUploader
                     withIcon={true}
                     buttonText='Choose images'
@@ -62,16 +60,17 @@ class UploadUserPhoto extends React.Component<FormOwnProps,PhotoState>{
                     imgExtension={['.jpg', '.gif', '.png', '.gif']}
                     maxFileSize={5242880}
                 />
-            </>
+            </form>
         );
     }
 }
 
 const mapStateToProps = (state: AppState) => ({
-    userphoto: state.userphoto
+    userphoto: state.userphoto,
+    login: state.login.logInForm
 });
 
   export default  connect(
-    mapStateToProps,
+    mapStateToProps, 
     { uploadUserPhoto }
   )(UploadUserPhoto as any);

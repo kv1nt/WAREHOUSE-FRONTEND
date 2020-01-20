@@ -15,15 +15,9 @@ export function addUserPhotoDataInStore(photo : UserImage){
 
 //--------------------API-----------------------------
 
-export function uploadUserPhoto(photo : UserImage)  {
-    return (dispatch : any, getState : any) => {
-
-        return axios.post(`/api/userphoto`, photo)
-        .then(res => {
-            dispatch(addUserPhotoDataInStore(res.data));
-            return res.data;
-        });
-    }
+export async function uploadUserPhoto(photo : UserImage)  {
+    await axios.post(`/api/userphoto`, photo)
+    await addUserPhotoDataInStore(photo);
 }
 
 //----------------------------------------------------
