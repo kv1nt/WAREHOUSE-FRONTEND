@@ -7,12 +7,17 @@ import { connect } from 'react-redux'
 import { RegiserForm } from '../../../store/registerUser/types'
 import { LeftMenu } from '../../Menu/LeftMenu'
 import EditUserForm from '../EditUserForm/EditUserForm'
+import { uploadUserPhoto, getPhotoForUser } from '../../../store/userImage/actions'
+import { UserImage } from '../../../store/userImage/types'
 
 
 
 
 interface IUserInfoPageProps
 {
+    uploadUserPhoto: typeof uploadUserPhoto
+    getPhotoForUser: typeof getPhotoForUser
+    userphoto: UserImage
     login:  LoginForm
     register: RegiserForm
     getUserById: typeof getUserById
@@ -62,6 +67,7 @@ interface IUserInfoPageState
             <>
             <LeftMenu />
             <div className="user-info-container">
+                <img src={this.props.userphoto.content} alt="Logo"  />
                 <div className="user-item"><span>Name: {this.state.name}</span></div>
                 <div className="user-item"><span>Email: {this.state.email}</span></div>
                 <div className="user-item"><span>Password: {this.state.password}</span></div>
@@ -76,6 +82,7 @@ interface IUserInfoPageState
 
 const mapStateToProps = (state: AppState) => ({
     register: state.register.registerForm,
+    userphoto: state.userphoto.userImage,
     login: state.login.logInForm
   });
   

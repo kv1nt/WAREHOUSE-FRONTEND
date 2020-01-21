@@ -22,3 +22,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 package-lock.json
+.vs/slnx.sqlite
+.vs/tasks.vs.json
+.vs/VSWorkspaceState.json
+.vs/config/applicationhost.config
+.vs/WAREHOUSE-FRONTEND/config/applicationhost.config
+.vs/WAREHOUSE-FRONTEND/v15/.suo
+.vs/WAREHOUSE-FRONTEND/v16/.suo

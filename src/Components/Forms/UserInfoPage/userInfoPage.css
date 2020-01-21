@@ -31,3 +31,10 @@
     display: inline-block;
     font-size: 13px;
 }
+
+.user-info-container img{
+    float: right;
+    display: block;
+    max-width: 23%;
+    margin: 2%;
+}
