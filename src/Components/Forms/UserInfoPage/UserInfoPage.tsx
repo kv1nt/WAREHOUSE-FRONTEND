@@ -10,9 +10,6 @@ import EditUserForm from '../EditUserForm/EditUserForm'
 import { uploadUserPhoto, getPhotoForUser } from '../../../store/userImage/actions'
 import { UserImage } from '../../../store/userImage/types'
 
-
-
-
 interface IUserInfoPageProps
 {
     uploadUserPhoto: typeof uploadUserPhoto
@@ -65,22 +62,23 @@ interface IUserInfoPageState
     render(){
         return(
             <>
-            <LeftMenu />
-            <div className="user-info-container">
-                <img src={this.props.userphoto.content} alt="Logo"  />
-                <div className="user-item"><span>Name: {this.state.name}</span></div>
-                <div className="user-item"><span>Email: {this.state.email}</span></div>
-                <div className="user-item"><span>Password: {this.state.password}</span></div>
-                <button className="update-user-btn" onClick={this.isUpdateUserFormShow} >Update</button>
-            </div>
-            {this.state.isFormShow ? <EditUserForm /> : ''}
+                <LeftMenu />
+                <div className="user-info-container">
+                    <img src={this.props.userphoto.content} alt="Logo"  />
+                    <div className="user-item"><span>Name: {this.state.name}</span></div>
+                    <div className="user-item"><span>Email: {this.state.email}</span></div>
+                    <div className="user-item"><span>Password: {this.state.password}</span></div>
+                    <button className="update-user-btn" onClick={this.isUpdateUserFormShow} >Update</button>
+                </div>
+                {this.state.isFormShow ? <EditUserForm /> : ''}
             </>
         )
     }
 }
 
 
-const mapStateToProps = (state: AppState) => ({
+const mapStateToProps = (state: AppState) =>
+ ({
     register: state.register.registerForm,
     userphoto: state.userphoto.userImage,
     login: state.login.logInForm

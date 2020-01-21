@@ -39,6 +39,7 @@ async componentDidMount(){
  }
 
     render(){
+        console.log(this.props.login)
         return(
             <>
             <LeftMenu/>
