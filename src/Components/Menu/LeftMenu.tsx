@@ -22,12 +22,12 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
         return (  
           <div className="left-menu-container">
                 <ul>
-                  <li><Link to={'/all'} >Home</Link></li>
-                  <li><Link to={'/companies'} >Company Service</Link></li>
-                  <li><Link to={'/warehouses'} >Warehouse Service</Link></li>
-                  <li><Link to={'/locations'} >Locations</Link></li>
-                  <li><Link to={'/userinfo'} >User Settings</Link></li>
-                  <li><Link to={'/'} >Log Out</Link></li>
+                  <div className="link-effect"><li><Link to={'/all'} >Home</Link></li></div>
+                  <div className="link-effect"><li><Link to={'/companies'} >Company Service</Link></li></div>
+                  <div className="link-effect"><li><Link to={'/warehouses'} >Warehouse Service</Link></li></div>
+                  <div className="link-effect"><li><Link to={'/locations'} >Locations</Link></li></div>
+                  <div className="link-effect"><li><Link to={'/userinfo'} >User Settings</Link></li></div>
+                  <div className="link-effect"><li><Link to={'/'} >Log Out</Link></li></div>
                 </ul>
             </div>
           );

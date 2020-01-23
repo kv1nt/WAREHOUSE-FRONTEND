@@ -6,10 +6,10 @@
   z-index: 1;
   top: 0;
   left: 0;
-  background-color:#5187c8;
+  background-color:#474747;
   overflow-x: hidden;
   padding: 1%;
-  border: 1px solid #5ca1c6
+  border: 1px solid #565656
 }
 
 .left-menu-container a
@@ -20,6 +20,21 @@
   color: #f1f1f1;
   display: block;
 }
+
+.link-effect a:hover
+{
+  border-right-style: solid;
+  border-right-width: 3px;
+  border-right-color: rgb(187, 58, 58);
+  background-color: #6a6d6d;
+
+}
+
+.link-effect a:hover::after
+{
+  border-color: red;
+}
+
 
 .left-menu-container a:hover
 {
@@ -36,7 +51,7 @@
 @media screen and (max-width: 1000px) {
   .left-menu-container ul
   {
-    padding-left:20px;
+    padding-left: 20px;
   }
 }
 
