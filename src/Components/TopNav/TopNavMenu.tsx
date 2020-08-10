@@ -1,7 +1,7 @@
 import React from 'react';
 import '../TopNav/topNavMenu.css';
 import {navLiks , NavLinkModel} from '../TopNav/topNavLiks';
-import iconHookah from "../../icons/hookah-icon.png"
+import iconHookah from "../../icons/hookah-icon1.png"
 
 
 export default class TopNavMenu extends React.Component{

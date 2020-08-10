@@ -7,6 +7,7 @@ import { AppState } from '../../store';
 import { LoginForm } from '../../store/userLogin/types';
 import TopNavMenu from '../TopNav/TopNavMenu';
 import AllProducts from '../Products/AllProducts';
+import Hookah from "../../images/hookah-img.jpg" 
 
 interface ICompanyBreadcrumbListProps
 {
@@ -31,7 +32,7 @@ constructor(props: ICompanyBreadcrumbListProps)
             <div className="main-page-container">
                 <TopNavMenu/>
                 {/* <AllProducts/> */}
-                <p>This is Main page!</p>
+                {/* <img src={Hookah} alt="banner"/> */}
             </div>
             
         )

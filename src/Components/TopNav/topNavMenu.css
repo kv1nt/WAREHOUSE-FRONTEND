@@ -1,5 +1,6 @@
 .top-nav-container {
-    border: 1px rgb(204, 197, 197) solid;
+    border: 1px #E77FC9 solid;
+    background-color: #1C1A19;
 }
 
 .top-nav-container img {
@@ -11,10 +12,13 @@
 .top-nav-links {
     text-align: center;
     padding: 1%;
+    margin-bottom: 6px;
 }
 
 .top-nav-container a {
     padding: 5%;
     text-decoration: none;
-    color: rgb(105, 104, 104);
+    color: #679ED8;
+    font-weight: bold;
+    font-family: Snell Roundhand, cursive;
 }
