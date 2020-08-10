@@ -5,6 +5,8 @@ import { getCompaniesForUser } from '../../store/company/actions';
 import { connect } from 'react-redux';
 import { AppState } from '../../store';
 import { LoginForm } from '../../store/userLogin/types';
+import TopNavMenu from '../TopNav/TopNavMenu';
+import AllProducts from '../Products/AllProducts';
 
 interface ICompanyBreadcrumbListProps
 {
@@ -27,8 +29,11 @@ constructor(props: ICompanyBreadcrumbListProps)
     render(){
         return(
             <div className="main-page-container">
+                <TopNavMenu/>
+                {/* <AllProducts/> */}
                 <p>This is Main page!</p>
             </div>
+            
         )
     }
 }

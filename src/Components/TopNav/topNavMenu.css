@@ -1,0 +1,20 @@
+.top-nav-container {
+    border: 1px rgb(204, 197, 197) solid;
+}
+
+.top-nav-container img {
+    height: 65px;
+    width: 65px;
+    float: left;
+}
+
+.top-nav-links {
+    text-align: center;
+    padding: 1%;
+}
+
+.top-nav-container a {
+    padding: 5%;
+    text-decoration: none;
+    color: rgb(105, 104, 104);
+}

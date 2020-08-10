@@ -7,6 +7,7 @@ import { locationReducer } from './location/reducer';
 import { userLoginReducer } from './userLogin/reducers';
 import { userRegisterReducer } from './registerUser/reducers';
 import { userPhotoReducer } from './userImage/reducers';
+import { productReducer } from './products/reducers';
 
 const rootReducer = combineReducers ({
     companies: companyesReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers ({
     locations: locationReducer,
     login: userLoginReducer,
     register: userRegisterReducer,
-    userphoto: userPhotoReducer
+    userphoto: userPhotoReducer,
+    products: productReducer
 })
 
 export type AppState = ReturnType<typeof rootReducer>
