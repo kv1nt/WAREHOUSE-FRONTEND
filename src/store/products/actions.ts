@@ -1,7 +1,9 @@
 import { 
     Product,
     GET_PRODUCTS,
-    SET_PRODUCT
+    SET_PRODUCT,
+    FILTER_PRODUCTS,
+    FILTER_PRODUCTS_HIGHER
  } from "./types";
 
 import axios from 'axios';
@@ -22,6 +24,18 @@ export function createProductInStore(product : Product){
     }
 }
 
+export function fromLowersPriceProducts(){
+    return{
+        type: FILTER_PRODUCTS
+    }
+}
+
+export function fromLHigherPriceProducts(){
+    return{
+        type: FILTER_PRODUCTS_HIGHER
+    }
+}
+
 //----------------------------------------------------
 
 
@@ -37,7 +51,20 @@ export function getProducts() {
    }
 }
 
-export function createLocation(newProduct : Product) {
+export function filterProducts() {
+    return (dispatch : any, getState : any) =>{
+        dispatch(fromLowersPriceProducts());
+   }
+}
+
+
+export function filterProductsFromExpensive() {
+    return (dispatch : any, getState : any) =>{
+        dispatch(fromLHigherPriceProducts());
+   }
+}
+
+export function createProduct(newProduct : Product) {
     return (dispatch : any, getState : any) =>{
         return axios.post(`/api/product`, newProduct)
         .then(res => {

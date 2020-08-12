@@ -41,6 +41,7 @@ class AllProducts extends React.Component<ProductsProps, ProductsLocState> {
     
     render(){
         const {products} = this.props;
+        console.log(products);
         return (
             <>
             <div className="exists-locations-list">
@@ -48,11 +49,11 @@ class AllProducts extends React.Component<ProductsProps, ProductsLocState> {
                  (<div className="location-breadcrumb" key={index+1}>
                     <div className="title">Location</div>
                     <div className="item-param">Id: {product.id}</div>
+                    <div className="item-param">price: {product.price}</div>
                     <div className="item-param">name: {product.name}</div>
                     <div className="item-param">weight: {product.weight}</div>
                     <div className="item-param">color: {product.color}</div>
                     <div className="item-param">type: {product.type}</div>
-                    <div className="item-param">price: {product.price}</div>
                     <div className="item-param">description: {product.description}</div>
                 </div>)
                  )}

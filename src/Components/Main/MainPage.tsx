@@ -8,6 +8,8 @@ import { LoginForm } from '../../store/userLogin/types';
 import TopNavMenu from '../TopNav/TopNavMenu';
 import AllProducts from '../Products/AllProducts';
 import Hookah from "../../images/hookah-img.jpg" 
+import MainBanner from '../Banner/MainBanner';
+import ProductFilter from '../Filters/ProductFilter/ProductFilter';
 
 interface ICompanyBreadcrumbListProps
 {
@@ -31,7 +33,9 @@ constructor(props: ICompanyBreadcrumbListProps)
         return(
             <div className="main-page-container">
                 <TopNavMenu/>
-                {/* <AllProducts/> */}
+                <ProductFilter/>
+                {/* <MainBanner/> */}
+                <AllProducts/> 
                 {/* <img src={Hookah} alt="banner"/> */}
             </div>
             

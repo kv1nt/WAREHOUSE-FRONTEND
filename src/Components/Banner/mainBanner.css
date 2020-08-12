@@ -1,0 +1,17 @@
+.main-banner-container{
+    margin-top: 100px;
+    border: 1px #E77FC9 solid;
+    width: 90%;
+    height: auto;
+    background-color:#1F2F49;
+    opacity: 0.7;
+    display: block;
+    margin-left: auto;
+    overflow:hidden; 
+    margin-right: auto;
+    text-align: center;
+}
+
+.main-banner-container p{
+    color: white;
+}

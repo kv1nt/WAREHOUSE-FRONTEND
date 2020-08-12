@@ -1,5 +1,5 @@
 import {
-    ProductAcionTypes, GET_PRODUCTS, ProductsState, SET_PRODUCT
+    ProductAcionTypes, GET_PRODUCTS, ProductsState, SET_PRODUCT, FILTER_PRODUCTS, FILTER_PRODUCTS_HIGHER
 } from './types';
 
 const initialState : ProductsState = {
@@ -12,6 +12,18 @@ export function productReducer(state = initialState, action: ProductAcionTypes) 
             return {
                 products: [...action.payload]
             }
+            case FILTER_PRODUCTS :
+                let prod = state.products
+                return {
+                    products: prod
+                    .sort((a,b) => parseFloat(a.price) - parseFloat(b.price))
+                }
+                case FILTER_PRODUCTS_HIGHER :
+                    let prod1 = state.products
+                    return {
+                        products: prod1
+                        .sort((a,b) =>  parseFloat(b.price) - parseFloat(a.price))
+                    }
             case SET_PRODUCT :
             return {
                 products: [...state.products, action.payload]

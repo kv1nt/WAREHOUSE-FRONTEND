@@ -16,10 +16,20 @@ export const GET_PRODUCTS = "GET_PRODUCTS";
 export const SET_PRODUCT = "SET_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const UPADATE_PRODUCT = "UPADATE_PRODUCT";
+export const FILTER_PRODUCTS = "FILTER_PRODUCTS"; 
+export const FILTER_PRODUCTS_HIGHER = "FILTER_PRODUCTS_HIGHER"; 
 
 interface GetProducts {
     type: typeof GET_PRODUCTS;
     payload: Product[]
+}
+
+interface FilterProducts {
+    type: typeof FILTER_PRODUCTS;
+}
+
+interface FilterProductsHigherPrice {
+    type: typeof FILTER_PRODUCTS_HIGHER;
 }
 
 interface SetProduct{
@@ -38,4 +48,5 @@ interface UpdateProduct {
 }
 
 
-export type ProductAcionTypes = GetProducts & SetProduct & DeleteProduct & UpdateProduct;
+export type ProductAcionTypes = GetProducts & SetProduct & DeleteProduct & UpdateProduct & FilterProducts
+                                & FilterProductsHigherPrice;

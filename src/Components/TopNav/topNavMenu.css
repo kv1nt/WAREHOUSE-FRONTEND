@@ -1,6 +1,11 @@
 .top-nav-container {
+    width: 98%;
     border: 1px #E77FC9 solid;
     background-color: #1C1A19;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.5%;
 }
 
 .top-nav-container img {
