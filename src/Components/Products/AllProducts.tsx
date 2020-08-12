@@ -44,17 +44,15 @@ class AllProducts extends React.Component<ProductsProps, ProductsLocState> {
         console.log(products);
         return (
             <>
-            <div className="exists-locations-list">
+            <div className="exists-locations-list ">
                 {products.products.map((product: Product, index: number)=>
                  (<div className="location-breadcrumb" key={index+1}>
-                    <div className="title">Location</div>
-                    <div className="item-param">Id: {product.id}</div>
-                    <div className="item-param">price: {product.price}</div>
-                    <div className="item-param">name: {product.name}</div>
-                    <div className="item-param">weight: {product.weight}</div>
-                    <div className="item-param">color: {product.color}</div>
-                    <div className="item-param">type: {product.type}</div>
-                    <div className="item-param">description: {product.description}</div>
+                    <div className="title">{product.name}</div>
+                    <div className="item-param">Цена: {product.price}</div>
+                    <div className="item-param">Вес: {product.weight}</div>
+                    <div className="item-param">Вкус: {product.color}</div>
+                    <div className="item-param">Тип: {product.type}</div>
+                    <div className="item-param">Описание: {product.description}</div>
                 </div>)
                  )}
             </div>

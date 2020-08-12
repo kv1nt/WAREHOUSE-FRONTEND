@@ -50,10 +50,14 @@ constructor(props: IProductFilterProps)
         console.log(products);
         return(
             <div className="product-filter-container">
-                <input type="checkbox"  onChange={this.handleFromChiperPriceClick}/>
-                    <label>From expensive to cheap</label>
+                <div className="checkbox-input">
+                    <input type="checkbox"  onChange={this.handleFromChiperPriceClick}/>
+                        <label>От дорогих к дешевым</label>
+                </div>
+                <div className="checkbox-input">
                 <input type="checkbox"  onChange={this.handleFromExpensivePriceClick}/>
-                    <label>From cheap to expensive</label>
+                    <label>От дешевых к дорогим</label>
+                </div>
                     <select>
                         {this.props.products.products.map((val: Product) => 
                             <option value={val.name}>{val.name}</option>

@@ -1,5 +1,26 @@
 .product-filter-container{
-    border: 1px black solid;
-    width: 10%;
+    float: left;
+    width: 16%;
     height: 500px;
+    float: left;
+    background: #1C1A19;
+    margin-top: 1.78%;
+    margin-left: 0.5%;
+    border: 1px #D970BB solid;
+}
+
+.product-filter-container label{
+    color: #5E8EC2;
+}
+
+.product-filter-container .checkbox-input{
+   display: inline-block;
+   padding: 5%;
+}
+
+.product-filter-container select{
+    display: block;
+    width: 89%;
+    padding: 2%;
+    margin: 7% auto;
 }
