@@ -1,22 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../../store';
-import {  filterProducts, filterProductsFromExpensive } from '../../../store/products/actions';
+import {  filterProducts, filterProductsFromExpensive, filterProductByName, getProducts } from '../../../store/products/actions';
 import '../ProductFilter/productFilter.css';
 import { ProductsState, Product } from '../../../store/products/types';
 
 
 interface IProductFilterProps
 {
+    getProducts: typeof getProducts
     filterProducts: typeof filterProducts
     filterProductsFromExpensive: typeof filterProductsFromExpensive
+    filterProductByName: typeof filterProductByName
     checked: boolean
     products: ProductsState
+    onChange:  React.FormEvent<HTMLInputElement>
 }
 
 interface IProductFilterState
 {
     checked: boolean;
+    value: string
+    tmNamesList: string[]
 }
 
 
@@ -30,10 +35,22 @@ constructor(props: IProductFilterProps)
         price: '',
         name: '',
         weight: '',
-        checked: false
+        checked: false,
+        value: '',
+        tmNamesList:[]
     }
 }
 
+     componentWillReceiveProps (){
+    
+        const {products} = this.props;
+        
+            console.log(products.products)
+        
+         this.setState({tmNamesList: products.products})
+        
+        
+    }
 
   handleFromChiperPriceClick = () => {
     this.props.filterProducts()
@@ -45,9 +62,16 @@ constructor(props: IProductFilterProps)
     this.setState({ checked: !this.state.checked });
   }
 
+  changeName = (event: any) => {
+    this.props.filterProductByName(event.target.value);
+  }
+
     render(){
-        const {products} = this.props;
-        console.log(products);
+        const {tmNamesList} = this.state;
+        console.log(tmNamesList)
+
+        const {products} = this.props.products;
+            console.log(products)
         return(
             <div className="product-filter-container">
                 <div className="checkbox-input">
@@ -58,7 +82,7 @@ constructor(props: IProductFilterProps)
                 <input type="checkbox"  onChange={this.handleFromExpensivePriceClick}/>
                     <label>От дешевых к дорогим</label>
                 </div>
-                    <select>
+                    <select onChange={(e) =>this.changeName(e)} value={this.state.value}>
                         {this.props.products.products.map((val: Product) => 
                             <option value={val.name}>{val.name}</option>
                         )}
@@ -81,6 +105,6 @@ const mapStateToProps = (state: AppState) => ({
   export default connect(
     mapStateToProps,
     {
-        filterProducts, filterProductsFromExpensive
+        filterProducts, filterProductsFromExpensive, filterProductByName, getProducts
     }
   )(ProductFilter as any);

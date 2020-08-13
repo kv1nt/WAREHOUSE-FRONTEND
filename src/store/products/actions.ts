@@ -3,7 +3,8 @@ import {
     GET_PRODUCTS,
     SET_PRODUCT,
     FILTER_PRODUCTS,
-    FILTER_PRODUCTS_HIGHER
+    FILTER_PRODUCTS_HIGHER,
+    FILTER_PRODUCTS_NAME
  } from "./types";
 
 import axios from 'axios';
@@ -36,6 +37,13 @@ export function fromLHigherPriceProducts(){
     }
 }
 
+export function filterProductsByName(name: string){
+    return{
+        type: FILTER_PRODUCTS_NAME,
+        payload: name
+    }
+}
+
 //----------------------------------------------------
 
 
@@ -57,6 +65,12 @@ export function filterProducts() {
    }
 }
 
+export function filterProductByName(name: string) {
+    console.log(name)
+    return (dispatch : any, getState : any) =>{
+        dispatch(filterProductsByName(name));
+   }
+}
 
 export function filterProductsFromExpensive() {
     return (dispatch : any, getState : any) =>{
