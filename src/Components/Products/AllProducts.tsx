@@ -35,13 +35,12 @@ class AllProducts extends React.Component<ProductsProps, ProductsLocState> {
         }
       }
 
- componentDidMount(){
+ async componentDidMount(){
     this.props.getProducts()
   }      
     
     render(){
         const {products} = this.props;
-        console.log(products);
         return (
             <>
             <div className="exists-locations-list ">

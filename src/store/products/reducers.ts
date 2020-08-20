@@ -19,8 +19,7 @@ export function productReducer(state = initialState, action: ProductAcionTypes) 
                     .sort((a,b) => parseFloat(a.price) - parseFloat(b.price))
                 }
             case FILTER_PRODUCTS_NAME :
-                let val = action.payload
-                let prod2 = state.products.filter(x => x.name === val);
+                let prod2 = state.products.filter(x => x.name === action.payload);
                 return {
                     products: prod2
                 }    

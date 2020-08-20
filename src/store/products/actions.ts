@@ -65,10 +65,11 @@ export function filterProducts() {
    }
 }
 
-export function filterProductByName(name: string) {
-    console.log(name)
-    return (dispatch : any, getState : any) =>{
-        dispatch(filterProductsByName(name));
+export  function getProductByName(name: any) {
+    return  (dispatch : any, getState : any) =>{
+        return axios.get(`/api/product/byname`, name).then(async(res) => {
+            return await res.data;
+        });
    }
 }
 
