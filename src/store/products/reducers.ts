@@ -1,5 +1,5 @@
 import {
-    ProductAcionTypes, GET_PRODUCTS, ProductsState, SET_PRODUCT, FILTER_PRODUCTS, FILTER_PRODUCTS_HIGHER, FILTER_PRODUCTS_NAME
+    ProductAcionTypes, GET_PRODUCTS, ProductsState, SET_PRODUCT, FILTER_PRODUCTS, FILTER_PRODUCTS_HIGHER, FILTER_PRODUCTS_BY_PARAMS
 } from './types';
 
 const initialState : ProductsState = {
@@ -18,10 +18,9 @@ export function productReducer(state = initialState, action: ProductAcionTypes) 
                     products: prod
                     .sort((a,b) => parseFloat(a.price) - parseFloat(b.price))
                 }
-            case FILTER_PRODUCTS_NAME :
-                let prod2 = state.products.filter(x => x.name === action.payload);
+            case FILTER_PRODUCTS_BY_PARAMS :
                 return {
-                    products: prod2
+                    products: [...action.payload]
                 }    
             case FILTER_PRODUCTS_HIGHER :
                 let prod1 = state.products

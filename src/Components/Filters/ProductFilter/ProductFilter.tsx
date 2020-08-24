@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../../../store';
-import {  filterProducts, filterProductsFromExpensive, getProductByName, getProducts } from '../../../store/products/actions';
+import {  filterProducts, filterProductsFromExpensive, getProductByParams, getProducts } from '../../../store/products/actions';
 import '../ProductFilter/productFilter.css';
 import { ProductsState, Product } from '../../../store/products/types';
-import { compose } from 'redux';
 
 
 interface IProductFilterProps
@@ -12,21 +11,29 @@ interface IProductFilterProps
     getProducts: typeof getProducts
     filterProducts: typeof filterProducts
     filterProductsFromExpensive: typeof filterProductsFromExpensive
-    getProductByName: typeof getProductByName
+    getProductByParams: typeof getProductByParams
     checked: boolean
     products: ProductsState
     onChange:  React.FormEvent<HTMLInputElement>
+    
 }
 
 interface IProductFilterState
 {
-    checked: boolean;
-    value: string
+    checked?: boolean;
+    value?: string
     tmNamesList: string[]
+    product?:  any
+    id?: string,
+    type?: string,
+    price?: string,
+    name?: string,
+    weight?: string
+
 }
 
 
-export class ProductFilter extends React.Component<IProductFilterProps, any> {
+export class ProductFilter extends React.Component<IProductFilterProps, IProductFilterState> {
 constructor(props: IProductFilterProps)
 {
     super(props)
@@ -38,7 +45,8 @@ constructor(props: IProductFilterProps)
         weight: '',
         checked: false,
         value: '',
-        tmNamesList:[]
+        tmNamesList:[],
+        product: {name: '', price: '', weight:''}
     }
 }
 
@@ -56,9 +64,30 @@ constructor(props: IProductFilterProps)
     this.setState({ checked: !this.state.checked });
   }
 
-     changeName = async (event: any) => {
-    let res  = await this.props.getProductByName(event.target.value);
-     console.log(res.bind(this));
+  changeName =  (event: any) => {
+    this.setState({name: event.target.value})
+  }
+
+  changeWeihgt =  (event: any) => {
+    this.setState({weight: event.target.value})
+  }
+
+  changePrice =  (event: any) => {
+    this.setState({price: event.target.value})
+  }
+
+  search = () =>{
+      this.setState({product: 
+        {
+         id: null,
+         name: this.state.name,
+         price: this.state.price, 
+         weight: this.state.weight,
+         description: '',
+         type: '',
+         color: ''
+        }})
+    this.props.getProductByParams(this.state.product);
   }
 
   resetSettings = () =>{
@@ -66,6 +95,8 @@ constructor(props: IProductFilterProps)
   }
 
     render(){
+        const {product} = this.state;
+        console.log(product)
         return(
             <div className="product-filter-container">
                 <div className="checkbox-input">
@@ -83,12 +114,18 @@ constructor(props: IProductFilterProps)
                         )}
                     </select>
                     <label>Вес: </label>
-                    <select>
+                    <select onChange={(e) =>this.changeWeihgt(e)}>
                         {this.props.products.products.map((val: Product) => 
                             <option value={val.weight}>{val.weight}</option>
                         )}
                     </select>
-                    
+                    <label>Цена: </label>
+                    <select onChange={(e) =>this.changePrice(e)}>
+                        {this.props.products.products.map((val: Product) => 
+                            <option value={val.price}>{val.price}</option>
+                        )}
+                    </select>
+                    <button className="add-company-btn" onClick={() => this.search()}>Поиск</button>
                     <button className="add-company-btn" onClick={() => this.resetSettings()}>Сброс настроек</button>
             </div>
             
@@ -104,6 +141,6 @@ const mapStateToProps = (state: AppState) => ({
     mapStateToProps,
     {
         filterProducts, filterProductsFromExpensive,
-        getProductByName, getProducts
+        getProductByParams, getProducts
     }
   )(ProductFilter as any);

@@ -4,7 +4,7 @@ import {
     SET_PRODUCT,
     FILTER_PRODUCTS,
     FILTER_PRODUCTS_HIGHER,
-    FILTER_PRODUCTS_NAME
+    FILTER_PRODUCTS_BY_PARAMS
  } from "./types";
 
 import axios from 'axios';
@@ -37,10 +37,10 @@ export function fromLHigherPriceProducts(){
     }
 }
 
-export function filterProductsByName(name: string){
+export function filterProductsByParams(params: Product){
     return{
-        type: FILTER_PRODUCTS_NAME,
-        payload: name
+        type: FILTER_PRODUCTS_BY_PARAMS,
+        payload: params
     }
 }
 
@@ -65,10 +65,13 @@ export function filterProducts() {
    }
 }
 
-export  function getProductByName(name: any) {
-    return  (dispatch : any, getState : any) =>{
-        return axios.get(`/api/product/byname`, name).then(async(res) => {
-            return await res.data;
+export  function getProductByParams(product : Product) {
+    console.log(product)
+    return (dispatch : any, getState : any) =>{
+        return axios.put(`/api/product/byname`, product)
+        .then(res => {
+            dispatch(filterProductsByParams(res.data));
+            return res;
         });
    }
 }
