@@ -1,10 +1,10 @@
 export interface Product {
     id: any,
-    color: string,
-    type: string,
+    color: any,
+    type: any,
     price: any,
-    name: string,
-    description: string,
+    name: any,
+    description: any,
     weight: any
 }
 

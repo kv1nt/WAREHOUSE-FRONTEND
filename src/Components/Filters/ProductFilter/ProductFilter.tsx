@@ -26,10 +26,10 @@ interface IProductFilterState
     product?:  any
     id?: string,
     type?: string,
-    price?: string,
+    price?: number,
     name?: string,
-    weight?: string
-
+    weight?: number,
+    productsCompState?: Product[]
 }
 
 
@@ -40,13 +40,17 @@ constructor(props: IProductFilterProps)
     this.state ={
         id: '',
         type: '',
-        price: '',
+        price: 0,
         name: '',
-        weight: '',
+        weight: 0,
         checked: false,
         value: '',
         tmNamesList:[],
-        product: {name: '', price: '', weight:''}
+        product: {
+            id: null, name: '', price: '', weight:'', type: null,
+            color: null, description: null
+        },
+        productsCompState: []
     }
 }
 
@@ -76,27 +80,39 @@ constructor(props: IProductFilterProps)
     this.setState({price: event.target.value})
   }
 
-  search = () =>{
-      this.setState({product: 
+  search =  () =>{
+      let product =
         {
          id: null,
          name: this.state.name,
          price: this.state.price, 
          weight: this.state.weight,
-         description: '',
-         type: '',
-         color: ''
-        }})
-    this.props.getProductByParams(this.state.product);
+         description: null,
+         type: null,
+         color: null
+        }
+
+     this.props.getProductByParams(product)
+    //  .then((res : any)=>{
+    //      this.setState({productsCompState: [...res.data]});
+    //      console.log(res.data)
+    //  })
+     
   }
+
+//   product.price = 0;
+//   product.weight = 0;
+//   product.description = "string";
+//   product.type = "string";
+//   product.id = null;
+//   product.name = "string"
 
   resetSettings = () =>{
       this.props.getProducts();
   }
 
     render(){
-        const {product} = this.state;
-        console.log(product)
+        const {productsCompState} = this.state;
         return(
             <div className="product-filter-container">
                 <div className="checkbox-input">
@@ -125,8 +141,8 @@ constructor(props: IProductFilterProps)
                             <option value={val.price}>{val.price}</option>
                         )}
                     </select>
-                    <button className="add-company-btn" onClick={() => this.search()}>Поиск</button>
-                    <button className="add-company-btn" onClick={() => this.resetSettings()}>Сброс настроек</button>
+                    <button className="add-company-btn" onClick={this.search}>Поиск</button>
+                    <button className="add-company-btn" onClick={this.resetSettings}>Сброс настроек</button>
             </div>
             
         )

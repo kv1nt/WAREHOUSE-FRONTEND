@@ -37,7 +37,7 @@ export function fromLHigherPriceProducts(){
     }
 }
 
-export function filterProductsByParams(params: Product){
+export function filterProductsByParams(params: any){
     return{
         type: FILTER_PRODUCTS_BY_PARAMS,
         payload: params
@@ -65,19 +65,25 @@ export function filterProducts() {
    }
 }
 
-export  function getProductByParams(product : Product) {
-    console.log(product)
+export  function getProductByParams(product : any) {
     return (dispatch : any, getState : any) =>{
-        return axios.put(`/api/product/byname`, product)
-        .then(res => {
-            dispatch(filterProductsByParams(res.data));
+        return axios.post(`api/productsearch/GetProductsByParams`,
+        {
+            price : parseFloat(product.price),
+            weight: parseFloat(product.weight),
+            description: product.description,
+            type: product.type,
+            id: product.id,
+            name : product.name
+        }).then(res => {
+            dispatch(getProductsFromStore(res.data));
             return res;
         });
-   }
+    }
 }
 
 export function filterProductsFromExpensive() {
-    return (dispatch : any, getState : any) =>{
+    return (dispatch : any, getState : any) => {
         dispatch(fromLHigherPriceProducts());
    }
 }
