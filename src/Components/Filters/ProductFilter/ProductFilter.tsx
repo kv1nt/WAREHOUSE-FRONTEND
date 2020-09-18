@@ -93,35 +93,23 @@ constructor(props: IProductFilterProps)
         }
 
      this.props.getProductByParams(product)
-    //  .then((res : any)=>{
-    //      this.setState({productsCompState: [...res.data]});
-    //      console.log(res.data)
-    //  })
-     
   }
 
-//   product.price = 0;
-//   product.weight = 0;
-//   product.description = "string";
-//   product.type = "string";
-//   product.id = null;
-//   product.name = "string"
 
   resetSettings = () =>{
       this.props.getProducts();
   }
 
     render(){
-        const {productsCompState} = this.state;
         return(
             <div className="product-filter-container">
                 <div className="checkbox-input">
                     <input type="checkbox"  onChange={this.handleFromChiperPriceClick}/>
-                        <label>От дорогих к дешевым</label>
+                        <label>От дешевых к дорогим </label>
                 </div>
                 <div className="checkbox-input">
                 <input type="checkbox"  onChange={this.handleFromExpensivePriceClick}/>
-                    <label>От дешевых к дорогим</label>
+                    <label>От дорогих к дешевым</label>
                 </div> 
                 <label>Производитель: </label>
                     <select onChange={(e) =>this.changeName(e)}>

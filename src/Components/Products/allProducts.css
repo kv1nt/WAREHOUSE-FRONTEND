@@ -1,3 +1,9 @@
 .all-products-container{
     border: 1px black solid;
 }
+
+.image-product{
+    border: 1px white solid;
+    width: 100%;
+    height: 350px;
+}
